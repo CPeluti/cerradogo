@@ -2,7 +2,13 @@ services:
   mongo:
     image: mongo
     restart: always
-    ports: - 27017:27017
+    ports: 
+      - 27017:27017
+    volumes:
+      - cerradogo:/home/node/app
     environment:
       MONGO_INITDB_ROOT_USERNAME: cerradogo
       MONGO_INITDB_ROOT_PASSWORD: cerradogo
+volumes:
+  cerradogo:
+    external: false
