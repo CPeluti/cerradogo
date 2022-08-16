@@ -9,7 +9,7 @@ export interface Question {
 const questionSchema = new Schema<Question>({
     question: {type: String, required: true},
     rightanswer: {type: String, required: true},
-    wronganswer: {type: String[], required: true},
+    wronganswer: [String],
 })
 
 const QuestionModel = model<Question>('Question', questionSchema)
