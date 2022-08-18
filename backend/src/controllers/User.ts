@@ -11,6 +11,17 @@ export const create = async (req: Request, res: Response) => {
     console.error(e)
   }
 }
+
+export const findAll = async (req: Request, res: Response) => {
+  try {
+    const user = await UserModel.find({})
+    res.send(user)
+  } catch (e){
+    console.error(e)
+    res.status(404).send("Nao foi possivel achar o usuario")
+  }
+}
+
 export const findById = async (req: Request, res: Response) => {
   const id = req.params.id
   try {

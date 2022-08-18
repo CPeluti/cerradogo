@@ -1,8 +1,9 @@
 import express, {Router} from 'express'
-import {create, deleteById, findById, updateById} from '../controllers/User'
+import {create, deleteById, findById, findAll, updateById} from '../controllers/User'
 const router: Router = express.Router()
 router.post('/', create)
 router.get('/:id', findById)
+router.get('/', findAll)
 router.patch('/:id', updateById)
 router.delete('/:id',deleteById)
 
