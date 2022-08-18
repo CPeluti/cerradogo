@@ -6,8 +6,7 @@ export const create = async (req: Request, res: Response) => {
   const userModel: HydratedDocument<User> = new UserModel(user)
   try{
     await userModel.save()
-    console.log(userModel)
-    res.send('Usuario cadastrado com sucesso')
+    res.send(userModel)
   } catch(e){
     console.error(e)
   }
@@ -30,13 +29,11 @@ export const updateById = async (req: Request, res: Response) => {
   const id = req.params.id
   const data = req.body
   try {
-    const user = await UserModel.findById(id)
-    console.log(typeof user)
-    // Object.keys(data).forEach((key: string) => {
-    //   user[key] = data[key]
-    // })
+    const user = await UserModel.findByIdAndUpdate(id, req.body, {new: true})
+    res.send("Usuario atualizado com sucesso")
   } catch (e) {
     console.error(e)
+    res.status(500).send("Falha ao atualizar o usuario")
   }
 }
 
