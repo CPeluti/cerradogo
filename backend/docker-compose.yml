@@ -8,7 +8,7 @@ services:
       - cerradogo:/home/node/app
     environment:
       MONGO_INITDB_ROOT_USERNAME: cerradogo
-      MONGO_INITDB_ROOT_PASSWORD: cerradogo
+      MONGO_INITDB_ROOT_PASSWORD: 6AzwKPCI9Z7iXcLu
 volumes:
   cerradogo:
     external: false
