@@ -2,7 +2,7 @@ import {Request, Response} from 'express'
 import QuestionModel, {Question} from '../models/Question'
 import { HydratedDocument } from 'mongoose'
 
-export const create = async (req: Request, res: Response) => {
+export const createQuestion = async (req: Request, res: Response) => {
   console.log(req.body)
   const question: Question = req.body
   const questionModel: HydratedDocument<Question> = new QuestionModel(question)
@@ -14,50 +14,51 @@ export const create = async (req: Request, res: Response) => {
   }
 }
 
-export const update = async (req: Request, res: Response) => {
-  const questionUpdate: Question = req.body
-  const question = await QuestionModel.findById(req.params.id)
-  
-  /* Object.keys(questionUpdate).forEach(key => {
-    if(question != null){
-      question[0][key] = questionUpdate[0][key]
-    }
-    //question[key] = questionUpdate[key]
-    
-  }) */
-
-  question!.question = questionUpdate.question
-  question!.rightanswer = questionUpdate.rightanswer
-  question!.wronganswer = questionUpdate.wronganswer
+export const updateQuestion = async (req: Request, res: Response) => {
+  const id = req.params.id
+  const questionUpdates = req.body
 
   try{
-    await question!.save()
+    const question = await QuestionModel.findByIdAndUpdate(id, questionUpdates, {new: true})
     res.send('Pergunta atualizada com sucesso')
   } catch(e){
     console.error(e)
+    res.status(500).send("Falha ao atualizar a pergunta")
   }
 }
 
-export const del = async (req: Request, res: Response) => {
-  const questionUpdate: Question = req.body
-  const question = await QuestionModel.findById(req.params.id)
+export const deleteQuestion = async (req: Request, res: Response) => {
+  const id = req.params.id
 
   try{
-    await question!.delete()
+    const question = await QuestionModel.deleteOne({_id:id})
     res.send('Pergunta deletada com sucesso')
   } catch(e){
     console.error(e)
+    res.send("Falha ao deletar o ID")
   }
 }
 
-export const read = async (req: Request, res: Response) => {
-  const questionUpdate: Question = req.body
-  const question = await QuestionModel.findById(req.params.id)
+export const readAllQuestions = async (req: Request, res: Response) => {
+  try {
+    const question = await QuestionModel.find({})
+    res.send(question)
+  } catch (e){
+    console.error(e)
+    res.status(404).send("Nao foi possivel achar a pergunta")
+  }
+}
 
+export const readQuestion = async (req: Request, res: Response) => {
+  const id = req.params.id
   try{
-    await question!.get()
-    //res.send('Pergunta deletada com sucesso')
+    const question = await QuestionModel.findById(id)
+    if(question===null){
+      throw(new Error("Pergunta nao encontrada"))
+    } 
+  res.send(question)
   } catch(e){
     console.error(e)
+    res.status(404).send("Nao foi possivel achar a pergunta")
   }
 }

@@ -1,10 +1,11 @@
 import express, {Router} from 'express'
-import {create, update, del, read} from '../controllers/Question'
+import {createQuestion, updateQuestion, deleteQuestion, readQuestion, readAllQuestions} from '../controllers/Question'
 const router: Router = express.Router()
-router.post('/', create)
-router.put('/:id', update)
-router.delete('/:id', del)
-router.get('/:id', read)
+router.post('/', createQuestion)
+router.patch('/:id', updateQuestion)
+router.delete('/:id', deleteQuestion)
+router.get('/:id', readQuestion)
+router.get('/', readAllQuestions)
 //router.post('/validate', validate)
 
 export default router
