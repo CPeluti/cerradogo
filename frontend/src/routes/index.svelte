@@ -1,9 +1,7 @@
 <script lang="ts">
-    import type Colecionaveis from "src/interfaces/Colecoes";
-    let colecionavel: Colecionaveis = {name: "d", rarity: "d", about: "d"}
-
-
+    import type Collectables from "src/interfaces/Colecoes";
+    let colectable: Collectables = {name: "Daviany", rarity: "Raro", about: "Onde o Judas se perdeu"}
 
 </script>
-<h1>Welcome {colecionavel.name}</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<h1>Welcome {colectable.name}</h1>
+<p>Visit {colectable.rarity} <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the {colectable.about}</p>
