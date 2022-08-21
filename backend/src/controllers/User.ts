@@ -6,7 +6,7 @@ export const create = async (req: Request, res: Response) => {
   const userModel: HydratedDocument<User> = new UserModel(user)
   try{
     await userModel.save()
-    res.send(userModel)
+    res.send('Usuario cadastrado com sucesso')
   } catch(e){
     console.error(e)
   }
