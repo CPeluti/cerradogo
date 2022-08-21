@@ -16,11 +16,7 @@ const port = process.env.PORT
 const dbUser = process.env.DB_USERNAME
 const dbPasswd = process.env.DB_PASSWORD
 
-console.log(dbUser)
-console.log(dbPasswd)
-
 mongoose.connect(`mongodb+srv://${dbUser}:${dbPasswd}@cluster0.ub24ryp.mongodb.net/?retryWrites=true&w=majority`)
-
 
 app.use('/user', User)
 app.use('/question', Question)

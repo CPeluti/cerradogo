@@ -7,9 +7,10 @@
 	export let page;
 
 	export let components;
-	export let props_0 = null;
-	export let props_1 = null;
-	export let props_2 = null;
+	export let data_0 = null;
+	export let data_1 = null;
+	export let data_2 = null;
+	export let errors;
 
 	setContext('__svelte__', stores);
 
@@ -34,17 +35,17 @@
 </script>
 
 {#if components[1]}
-	<svelte:component this={components[0]} {...(props_0 || {})}>
+	<svelte:component this={components[0]} data={data_0}>
 		{#if components[2]}
-			<svelte:component this={components[1]} {...(props_1 || {})}>
-				<svelte:component this={components[2]} {...(props_2 || {})}/>
+			<svelte:component this={components[1]} data={data_1}>
+				<svelte:component this={components[2]} data={data_2}/>
 			</svelte:component>
 		{:else}
-			<svelte:component this={components[1]} {...(props_1 || {})} />
+			<svelte:component this={components[1]} data={data_1} {errors} />
 		{/if}
 	</svelte:component>
 {:else}
-	<svelte:component this={components[0]} {...(props_0 || {})} />
+	<svelte:component this={components[0]} data={data_0} {errors} />
 {/if}
 
 {#if mounted}
