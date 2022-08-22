@@ -1,3 +1,7 @@
 node_modules
 .env
+<<<<<<< HEAD
 docker-compose.yml
+=======
+dist
+>>>>>>> bd622c6d27bd7454a7e46e432897c0e53fd6ce53
