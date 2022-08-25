@@ -11,7 +11,7 @@ const User_1 = __importDefault(require("./routes/User"));
 const Question_1 = __importDefault(require("./routes/Question"));
 const Login_1 = __importDefault(require("./routes/Login"));
 const Hunt_1 = __importDefault(require("./routes/Hunt"));
-const Collection_1 = __importDefault(require("./routes/Collection"));
+const Collectionable_1 = __importDefault(require("./routes/Collectionable"));
 dotenv_1.default.config();
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
@@ -23,7 +23,7 @@ app.use('/user', User_1.default);
 app.use('/question', Question_1.default);
 app.use('/login', Login_1.default);
 app.use('/hunt', Hunt_1.default);
-app.use('/collection', Collection_1.default);
+app.use('/collectionable', Collectionable_1.default);
 app.listen(port, () => {
     console.log(`server rodando na porta ${port}`);
 });
