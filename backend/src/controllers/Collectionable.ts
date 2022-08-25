@@ -4,11 +4,11 @@ import { HydratedDocument } from 'mongoose'
 
 export const createCollectionable = async (req: Request, res: Response) => {
   //console.log(req.body)
-  const hunt: Collectionable = req.body
-  const huntModel: HydratedDocument<Collectionable> = new CollectionableModel(hunt)
+  const collec: Collectionable = req.body
+  const collecModel: HydratedDocument<Collectionable> = new CollectionableModel(collec)
   try{
-    await huntModel.save()
-    const idNum = JSON.stringify(huntModel._id)
+    await collecModel.save()
+    const idNum = JSON.stringify(collecModel._id)
     res.write("Coleção criada com sucesso com id: ")
     res.write({idNum}.idNum)
     res.end()
@@ -19,10 +19,10 @@ export const createCollectionable = async (req: Request, res: Response) => {
 
 export const updateCollectionable = async (req: Request, res: Response) => {
   const id = req.params.id
-  const huntUpdates = req.body
+  const collecUpdates = req.body
 
   try{
-    const hunt = await CollectionableModel.findByIdAndUpdate(id, huntUpdates, {new: true})
+    const collec = await CollectionableModel.findByIdAndUpdate(id, collecUpdates, {new: true})
     res.send('Coleção atualizada com sucesso')
   } catch(e){
     console.error(e)
@@ -35,7 +35,7 @@ export const deleteCollectionable = async (req: Request, res: Response) => {
   const id = req.params.id
 
   try{
-    const hunt = await CollectionableModel.deleteOne({_id:id})
+    const collec = await CollectionableModel.deleteOne({_id:id})
     res.send('Coleção deletada com sucesso')
   } catch(e){
     console.error(e)
@@ -45,8 +45,8 @@ export const deleteCollectionable = async (req: Request, res: Response) => {
 
 export const readAllCollectionables = async (req: Request, res: Response) => {
   try {
-    const hunt = await CollectionableModel.find({})
-    res.send(hunt)
+    const collec = await CollectionableModel.find({})
+    res.send(collec)
   } catch (e){
     console.error(e)
     res.status(404).send("Nao foi possivel achar a coleção")
@@ -56,11 +56,11 @@ export const readAllCollectionables = async (req: Request, res: Response) => {
 export const readCollectionable = async (req: Request, res: Response) => {
   const id = req.params.id
   try{
-    const hunt = await CollectionableModel.findById(id)
-    if(hunt===null){
+    const collec = await CollectionableModel.findById(id)
+    if(collec===null){
       throw(new Error("Coleção nao encontrada"))
     } 
-  res.send(hunt)
+  res.send(collec)
   } catch(e){
     console.error(e)
     res.status(404).send("Nao foi possivel achar a coleção")
