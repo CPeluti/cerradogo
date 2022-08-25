@@ -6,6 +6,8 @@ import mongoose from 'mongoose'
 import User from './routes/User' 
 import Question from './routes/Question' 
 import Login from './routes/Login'
+import Hunt from './routes/Hunt'
+import Collection from './routes/Collectionable'
 
 dotenv.config()
 
@@ -21,6 +23,8 @@ mongoose.connect(`mongodb+srv://${dbUser}:${dbPasswd}@cluster0.ub24ryp.mongodb.n
 app.use('/user', User)
 app.use('/question', Question)
 app.use('/login', Login)
+app.use('/hunt', Hunt)
+app.use('/collectionable', Collection)
 
 app.listen(port, () => {
     console.log(`server rodando na porta ${port}`)
