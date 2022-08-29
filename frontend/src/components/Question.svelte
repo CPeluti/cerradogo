@@ -1,14 +1,55 @@
 <script lang="ts">
-    export let question: string
-    export let src: string
-    export let alt: string
+    import type QuestionInterface from "interfaces/Question";
+    import AnswerBtn from "./AnswerBtn.svelte"
+
+    export let question: QuestionInterface
+    const image = question.image
+    const quest = question.question
+    const answers = shuffle(question.answers)
+
+    function shuffle(a: {text:string, right: boolean, selected: string}[]) {
+        for (let i = a.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [a[i], a[j]] = [a[j], a[i]];
+        }
+        return a;
+    }
+
+   
+    function showAnswer(option: {text:string, right: boolean, selected: string}){
+        console.log(option)
+        for (let a of answers){
+            if(option === a) {
+                option.selected = 'true'
+            }
+            else {
+                option.selected = 'wrong'
+            }
+            
+        }
+        
+    }
+
 </script>
 
 <div>
     <h2>
-        {question}
+        {quest}
     </h2>
-    <img {src} {alt}>
+    <img src={image} alt="">
+
+    <div>
+        {#each answers as a}
+            
+            <AnswerBtn right={a.right && a.selected === 'true' ? true : false} 
+                       wrong={!(a.right) && a.selected === 'true' ? true : false} 
+                       notvisible={a.selected !== 'false' ? false : true}
+                       answer={a.text} 
+                       on:click={() => showAnswer(a)} />
+            
+        {/each} 
+    </div>
+    
     
 </div>
 
@@ -19,6 +60,7 @@
         flex-wrap: wrap;
         margin-left: auto;
         margin-right: auto;
+        margin-top: 1rem;
     }
 
     h2 {

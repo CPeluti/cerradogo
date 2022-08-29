@@ -1,13 +1,14 @@
 <script lang="ts">
     /* import Fa from '../../node_modules/svelte-fa/src/fa.svelte'
-    import { faFlag } from '@fortawesome/free-solid-svg-icons/index.es'
-     */
+    import { faFlag } from '@fortawesome/free-solid-svg-icons/index.es' */
+    
     export let answer: string
     export let right: boolean = false
     export let wrong: boolean = false
+    export let notvisible: boolean = false
 </script>
 
-<button class="answer-btn" class:right class:wrong>
+<button class="answer-btn" class:right class:wrong class:notvisible>
     {answer} <!-- <Fa icon={faFlag} /> -->
 </button>
 
@@ -48,6 +49,10 @@
 
     .wrong {
         background-image: linear-gradient(to right, #F46C6C , #E91A1A);
+    }
+
+    .notvisible {
+        visibility: hidden;
     }
 
     .answer-btn:hover {
