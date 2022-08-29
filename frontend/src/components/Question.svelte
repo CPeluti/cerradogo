@@ -19,11 +19,11 @@
     function showAnswer(option: {text:string, right: boolean, selected: string}){
         console.log(option)
         for (let a of answers){
-            if(option === a) {
-                option.selected = 'true'
+            if(option === a || a.right === true) {
+                a.selected = 'true'
             }
             else {
-                option.selected = 'wrong'
+                a.selected = 'false'
             }
             
         }
@@ -37,7 +37,7 @@
         {quest}
     </h2>
     <img src={image} alt="">
-
+    
     <div>
         {#each answers as a}
             
@@ -45,7 +45,7 @@
                        wrong={!(a.right) && a.selected === 'true' ? true : false} 
                        notvisible={a.selected !== 'false' ? false : true}
                        answer={a.text} 
-                       on:click={() => showAnswer(a)} />
+                       on:clickAnswer={() => showAnswer(a)} />
             
         {/each} 
     </div>

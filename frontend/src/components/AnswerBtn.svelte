@@ -1,14 +1,16 @@
 <script lang="ts">
     /* import Fa from '../../node_modules/svelte-fa/src/fa.svelte'
     import { faFlag } from '@fortawesome/free-solid-svg-icons/index.es' */
-    
+    import {createEventDispatcher} from "svelte"
     export let answer: string
     export let right: boolean = false
     export let wrong: boolean = false
     export let notvisible: boolean = false
+    const dispatch = createEventDispatcher()
+    function clickAnswer () {dispatch("clickAnswer")}
 </script>
 
-<button class="answer-btn" class:right class:wrong class:notvisible>
+<button class="answer-btn" class:right class:wrong class:notvisible on:click={clickAnswer}>
     {answer} <!-- <Fa icon={faFlag} /> -->
 </button>
 
