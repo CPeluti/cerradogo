@@ -28,10 +28,10 @@
         latlong: [13821839128, -21319038]}, {name: "string2",
         location: "string2",
         latlong: [1382183239128, -213190238]}]
-    const progress = 0.9
+    const progress = 7/9*100
 </script>
 {#each hunts as hunt}
     <HuntCard hunt={hunt}/>
-    <ProgressBar progress={50}/>
+    <ProgressBar progress={progress}/>
 
 {/each}
