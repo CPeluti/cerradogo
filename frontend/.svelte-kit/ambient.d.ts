@@ -16,12 +16,13 @@ declare module '$env/static/private' {
 	export const CommonProgramW6432: string;
 	export const COMPUTERNAME: string;
 	export const COMSPEC: string;
-	export const configsetroot: string;
 	export const CONFIG_SITE: string;
 	export const DISPLAY: string;
 	export const DriverData: string;
 	export const EDITOR: string;
 	export const EXEPATH: string;
+	export const FPS_BROWSER_APP_PROFILE_STRING: string;
+	export const FPS_BROWSER_USER_PROFILE_STRING: string;
 	export const HOME: string;
 	export const HOMEDRIVE: string;
 	export const HOMEPATH: string;
@@ -64,7 +65,6 @@ declare module '$env/static/private' {
 	export const NUMBER_OF_PROCESSORS: string;
 	export const OLDPWD: string;
 	export const OneDrive: string;
-	export const OneDriveConsumer: string;
 	export const ORIGINAL_PATH: string;
 	export const ORIGINAL_TEMP: string;
 	export const ORIGINAL_TMP: string;
@@ -84,9 +84,12 @@ declare module '$env/static/private' {
 	export const PSModulePath: string;
 	export const PUBLIC: string;
 	export const PWD: string;
+	export const QSYS_ROOTDIR: string;
+	export const QUARTUS_ROOTDIR: string;
 	export const SESSIONNAME: string;
 	export const SHELL: string;
 	export const SHLVL: string;
+	export const SOPC_KIT_NIOS2: string;
 	export const SSH_ASKPASS: string;
 	export const SYSTEMDRIVE: string;
 	export const SYSTEMROOT: string;
@@ -101,5 +104,6 @@ declare module '$env/static/private' {
 	export const USERNAME: string;
 	export const USERPROFILE: string;
 	export const WINDIR: string;
+	export const WORKON_HOME: string;
 	export const _: string;
 }
