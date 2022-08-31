@@ -26,7 +26,7 @@
         latlong: [1382183239128, -213190238]}, {name: "string",
         location: "string",
         latlong: [13821839128, -21319038]}, {name: "string2",
-        location: "string2",
+        location: "string",
         latlong: [1382183239128, -213190238]}]
     const progress = 7/9*100
 </script>
