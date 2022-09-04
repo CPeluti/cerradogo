@@ -5,7 +5,7 @@
     export let question: QuestionInterface
     const image = question.image
     const quest = question.question
-    const answers = shuffle(question.answers)
+    let answers = shuffle(question.answers)
 
     function shuffle(a: {text:string, right: boolean, selected: string}[]) {
         for (let i = a.length - 1; i > 0; i--) {
@@ -19,6 +19,7 @@
     function showAnswer(option: {text:string, right: boolean, selected: string}){
         console.log(option)
         for (let a of answers){
+            
             if(option === a || a.right === true) {
                 a.selected = 'true'
             }
@@ -27,27 +28,57 @@
             }
             
         }
-        
+
+        if(option.right === true) {
+            select = 'true'
+        }
+        else {
+            select = 'false'
+        }
+        answers = [...answers]
     }
+
+    let select = ''
 
 </script>
 
 <div>
-    <h2>
-        {quest}
-    </h2>
-    <img src={image} alt="">
+    <div class="qst">
+        <h2>
+                    
+            {#if select === 'true'}
+                {"Resposta correta!"}
+            {:else if select === 'false'}
+                {"Resposta errada! Tente novamente!"}
+            {:else}
+                {quest} 
+            {/if}
+            
+        </h2>
+        <img src={image} alt="">
+    </div>
     
-    <div>
+    
+    <div id="options">
+        
         {#each answers as a}
             
             <AnswerBtn right={a.right && a.selected === 'true' ? true : false} 
-                       wrong={!(a.right) && a.selected === 'true' ? true : false} 
-                       notvisible={a.selected !== 'false' ? false : true}
-                       answer={a.text} 
-                       on:clickAnswer={() => showAnswer(a)} />
+                    wrong={!(a.right) && a.selected === 'true' ? true : false} 
+                    notvisible={a.selected !== 'false' ? false : true}
+                    answer={a.text} 
+                    icon={a.right && a.selected === 'true' ? "fas fa-check" : (a.selected === 'true' ? "fas fa-x" : "")}
+                    on:clickAnswer={() => showAnswer(a)} />
+
+            <!-- {#if a.right && a.selected === 'true'}
+                select = 'true'
+            {:else if !(a.right) && a.selected === 'false'}
+                select = 'false'
+            {/if} -->
             
         {/each} 
+    
+        
     </div>
     
     
@@ -63,6 +94,11 @@
         margin-top: 1rem;
     }
 
+    .qst{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
     h2 {
         text-transform: uppercase;
         font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
@@ -81,4 +117,12 @@
         width: 40%;
         margin: auto;
     }
+
+    #options {
+        display: flex;
+        margin-left: auto;
+        margin-right: auto;
+        
+    }
+
 </style>
