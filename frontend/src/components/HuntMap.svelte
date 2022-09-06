@@ -16,6 +16,6 @@
 
     </script>
 
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDT1VWuFBpuLtdeThp9rV8g8Jg8OhW_Cz8&callback=myMap"></script>
-   <!--https://maps.googleapis.com/maps/api/js?v=3.exp&hl=en&key=AIzaSyDT1VWuFBpuLtdeThp9rV8g8Jg8OhW_Cz8&callback=myMap -->
+    <script src="https://maps.googleapis.com/maps/api/js?key={process.env.API_PWD}&callback=myMap"></script>
+
 </main>
