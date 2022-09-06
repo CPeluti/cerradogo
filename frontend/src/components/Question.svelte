@@ -69,12 +69,6 @@
                     answer={a.text} 
                     icon={a.right && a.selected === 'true' ? "fas fa-check" : (a.selected === 'true' ? "fas fa-x" : "")}
                     on:clickAnswer={() => showAnswer(a)} />
-
-            <!-- {#if a.right && a.selected === 'true'}
-                select = 'true'
-            {:else if !(a.right) && a.selected === 'false'}
-                select = 'false'
-            {/if} -->
             
         {/each} 
     
