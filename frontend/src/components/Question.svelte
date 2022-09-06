@@ -17,7 +17,7 @@
 
    
     function showAnswer(option: {text:string, right: boolean, selected: string}){
-        console.log(option)
+        console.log("TESTE")
         for (let a of answers){
             
             if(option === a || a.right === true) {
