@@ -1,0 +1,78 @@
+<script>
+    
+    import { NotificationDisplay, notifier } from '@beyonk/svelte-notifications'
+    import { goto } from '$app/navigation';
+
+    let username = ''
+    let password = ''
+    
+    let login = async () => {
+        const header = new Headers();
+        // header.append("Content-Type", "application/json;")
+        try {
+            const res = await fetch('http://localhost:3030/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({username, password}),
+            })
+            const {user, token} = await res.json()
+            if (window && window.sessionStorage) {
+                window.sessionStorage.setItem('user', JSON.stringify(user))
+                window.sessionStorage.setItem('token', token)
+                notifier.success("Login realizado com sucesso")
+                goto('/')
+            }
+        } catch (e) {
+            notifier.danger("Falha ao realizar login")
+        }
+    }
+</script>
+
+<NotificationDisplay />
+<div class="page">
+    <h1>logo</h1>
+    <div class="container">
+        <input class="input" bind:value={username} placeholder="E-Mail"/>
+        <input class="input" type="password" bind:value={password} placeholder="Password"/>
+    </div>
+    <button class="btn" on:click={login}>entrar</button>
+    <button class="btn">cadastrar</button>
+</div>
+
+<style>
+    .btn:hover{
+        cursor: pointer;
+    }
+    .btn {
+        border-radius: 100px;
+        font-weight: bold;
+        text-transform: uppercase;
+        font-size: 14px;
+        margin-bottom: 10px;
+        width: 130px;
+        height: 40px;
+    }
+    .page {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        vertical-align: middle;
+        justify-content: space-between;
+    }
+    .input {
+        padding-left: 20px;
+        margin-bottom: 20px;
+        border-radius: 40px;
+        width: 250px;
+        height: 45px;
+    }
+    .container {
+        display: flex;
+        flex-direction: column;
+    }
+</style>
