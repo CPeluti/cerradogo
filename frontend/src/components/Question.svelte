@@ -1,34 +1,12 @@
 <script lang="ts">
-    /* const fs = require("fs") */
+
     import type QuestionInterface from "interfaces/Question";
     import AnswerBtn from "./AnswerBtn.svelte"
-    
-    /* function convertDataUrlToBlob(dataUrl:string) : Blob {
-            const arr = dataUrl.split(',')
-            const mime = arr[0].match(/:(.*?);/)[1]
-            const bstr = atob(arr[1])
-            let n = bstr.length
-            const u8arr = new Uint8Array(n)
-
-            while (n--) {
-                u8arr[n] = bstr.charCodeAt(n)
-            }
-
-            return new Blob([u8arr], {type: mime})
-        }
-    const objectURL = URL.createObjectURL(convertDataUrlToBlob(dataUrl)); */
 
     export let question: QuestionInterface
-    const image = question.image
+    const image = `data:image/jpeg;base64,${question.img}`
     const quest = question.question
     let answers = shuffle(question.answers)
-
-    /* const buffer = Buffer.from(image, "base64")
-    fs.writeFileSync("img.jpg", buffer) */
-
-    /* const reader = new FileReader()
-    reader.readAsDataURL(image)
-    const preview = document.querySelector('img') */
 
     function shuffle(a: {text:string, right: boolean, selected: string}[]) {
         for (let i = a.length - 1; i > 0; i--) {
@@ -68,18 +46,18 @@
 <div>
     <div class="qst">
         <h2>
-                    
+            
             {#if select === 'true'}
-                {"Resposta correta!"}
+            {"Resposta correta!"}
             {:else if select === 'false'}
-                {"Resposta errada! Tente novamente!"}
+            {"Resposta errada! Tente novamente!"}
             {:else}
-                {quest} 
+            {quest} 
             {/if}
             
         </h2>
-        <img src={image} alt="">
     </div>
+    <img src={image} alt="">
     
     
     <div id="options">
