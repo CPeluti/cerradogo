@@ -1,9 +1,11 @@
 import { Schema, model} from 'mongoose'
+import imageSchema, {Image} from './Image';
+
 
 export interface Hunt{
         name: string
         location: string
-        img: string
+        img: Image
         latlong: number[]
         questions: string[]
     }
@@ -12,8 +14,8 @@ const huntSchema = new Schema<Hunt>({
     name: {type: String, required: true},
     location: {type: String, required: true},
     latlong: {type: [Number], required: true},
-    questions: {type: [String]},
-    img: {file: {data: Buffer, contentType: String}, type: String}
+    questions: {type: [String], select: true},
+    img: imageSchema
 })
 
 const HuntModel = model<Hunt>('Hunt', huntSchema)
