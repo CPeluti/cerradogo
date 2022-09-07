@@ -15,7 +15,7 @@ const userSchema = new Schema<User>({
     nickname: {type: String, required: true},
     name: {type: String, required: true},
     email: {type: String, required: true},
-    password: {type: String, required: true},
+    password: {type: String, required: true, select: false},
     avatar: {type: String},
     experience: {type: Number, required: true},
     rank: {type: Number, required: true},

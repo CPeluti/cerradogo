@@ -14,7 +14,7 @@ dotenv.config()
 
 const app: Express = express()
 app.use(express.json())
-app.use(cors())
+app.use(cors({credentials: true, origin: 'http://localhost:5173'}))
 
 const port = process.env.PORT
 const dbUser = process.env.DB_USERNAME
