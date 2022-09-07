@@ -21,3 +21,13 @@ export async function createSessionCookie(user: {username: string, password: str
         throw new Error("Credenciais invalidas")
     }
 }
+
+export async function singUpUser(user: {email: string, nickname: string, password: string}): Promise<{}>{
+    try {
+        let res = await request('http://localhost:3030/user', 'POST', {nickname: user.nickname, email: user.email, password: user.password, name: 'oi', avatar: '', experience: 0, rank: 0, leaguePoints: 0})
+        res = await res.json()
+        return res
+    } catch(e) {
+        throw new Error("Não foi possivel cadastrar o usuário")
+    }
+}
