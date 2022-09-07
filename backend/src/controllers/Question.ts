@@ -63,3 +63,4 @@ export const readQuestion = async (req: Request, res: Response) => {
     res.status(404).send("Nao foi possivel achar a pergunta")
   }
 }
+
