@@ -1,6 +1,7 @@
 <script lang="ts">
 import { signUpUser } from "$lib/auth";
 import { NotificationDisplay, notifier } from '@beyonk/svelte-notifications'
+import { goto } from '$app/navigation';
 
   let email = ""
   let password = ''
@@ -12,7 +13,7 @@ import { NotificationDisplay, notifier } from '@beyonk/svelte-notifications'
   let signUp = async () => {
         try {
             await signUpUser({email, name, nickname, password})
-            window.location.replace('/login')
+            await goto('/')
         } catch (e) {
             // @ts-ignore
             notifier.danger("Falha ao realizar o cadastro")
