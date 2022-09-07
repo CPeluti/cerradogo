@@ -106,4 +106,5 @@ declare module '$env/static/private' {
 	export const WINDIR: string;
 	export const WORKON_HOME: string;
 	export const _: string;
+	export const API_PWD: string;
 }

@@ -2,9 +2,10 @@
     import HuntMap from "../../components/HuntMap.svelte"
     import type { Hunt } from "src/interfaces/Hunt";
     const hunts:Array<Hunt> = 
-        [{name: "string",
+        [{name: "Olhos D'água",
         location: "string",
         latlong: [-15.884039920347867, -48.01590311958394]}]
+    const progress = 7/9*100
 </script>
 {#each hunts as hunt}
     <HuntMap hunt={hunt}/>
