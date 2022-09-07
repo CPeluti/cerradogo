@@ -26,41 +26,7 @@
                 <HuntCard hunt={hunt}/>
             </div>
             {/each}
-            {#each data as hunt}
-            <div style="margin-bottom: 20px;">
-                <HuntCard hunt={hunt}/>
-            </div>
-            {/each}
-            {#each data as hunt}
-            <div style="margin-bottom: 20px;">
-                <HuntCard hunt={hunt}/>
-            </div>
-            {/each}
-            {#each data as hunt}
-            <div style="margin-bottom: 20px;">
-                <HuntCard hunt={hunt}/>
-            </div>
-            {/each}
-            {#each data as hunt}
-            <div style="margin-bottom: 20px;">
-                <HuntCard hunt={hunt}/>
-            </div>
-            {/each}
-            {#each data as hunt}
-            <div style="margin-bottom: 20px;">
-                <HuntCard hunt={hunt}/>
-            </div>
-            {/each}
-            {#each data as hunt}
-            <div style="margin-bottom: 20px;">
-                <HuntCard hunt={hunt}/>
-            </div>
-            {/each}
-            {#each data as hunt}
-            <div style="margin-bottom: 20px;">
-                <HuntCard hunt={hunt}/>
-            </div>
-            {/each}
+            
             {/await}
         </div>
     </div>
