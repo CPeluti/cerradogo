@@ -1,11 +1,34 @@
 <script lang="ts">
+    /* const fs = require("fs") */
     import type QuestionInterface from "interfaces/Question";
     import AnswerBtn from "./AnswerBtn.svelte"
+    
+    /* function convertDataUrlToBlob(dataUrl:string) : Blob {
+            const arr = dataUrl.split(',')
+            const mime = arr[0].match(/:(.*?);/)[1]
+            const bstr = atob(arr[1])
+            let n = bstr.length
+            const u8arr = new Uint8Array(n)
+
+            while (n--) {
+                u8arr[n] = bstr.charCodeAt(n)
+            }
+
+            return new Blob([u8arr], {type: mime})
+        }
+    const objectURL = URL.createObjectURL(convertDataUrlToBlob(dataUrl)); */
 
     export let question: QuestionInterface
     const image = question.image
     const quest = question.question
     let answers = shuffle(question.answers)
+
+    /* const buffer = Buffer.from(image, "base64")
+    fs.writeFileSync("img.jpg", buffer) */
+
+    /* const reader = new FileReader()
+    reader.readAsDataURL(image)
+    const preview = document.querySelector('img') */
 
     function shuffle(a: {text:string, right: boolean, selected: string}[]) {
         for (let i = a.length - 1; i > 0; i--) {
@@ -69,12 +92,6 @@
                     answer={a.text} 
                     icon={a.right && a.selected === 'true' ? "fas fa-check" : (a.selected === 'true' ? "fas fa-x" : "")}
                     on:clickAnswer={() => showAnswer(a)} />
-
-            <!-- {#if a.right && a.selected === 'true'}
-                select = 'true'
-            {:else if !(a.right) && a.selected === 'false'}
-                select = 'false'
-            {/if} -->
             
         {/each} 
     
