@@ -1,31 +1,17 @@
 <script>
     
     import { NotificationDisplay, notifier } from '@beyonk/svelte-notifications'
-    import { goto } from '$app/navigation';
+    import {createSessionCookie} from '$lib/auth'
 
     let username = ''
     let password = ''
     
     let login = async () => {
-        const header = new Headers();
-        // header.append("Content-Type", "application/json;")
         try {
-            const res = await fetch('http://localhost:3030/login', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json'
-                },
-                body: JSON.stringify({username, password}),
-            })
-            const {user, token} = await res.json()
-            if (window && window.sessionStorage) {
-                window.sessionStorage.setItem('user', JSON.stringify(user))
-                window.sessionStorage.setItem('token', token)
-                notifier.success("Login realizado com sucesso")
-                goto('/')
-            }
+            const {user} = await createSessionCookie({username, password})
+            window.location.replace('/')
         } catch (e) {
+            // @ts-ignore
             notifier.danger("Falha ao realizar login")
         }
     }

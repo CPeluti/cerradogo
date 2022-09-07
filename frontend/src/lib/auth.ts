@@ -1,19 +1,23 @@
-export async function tokenIsValid(token): Promise<boolean> {
+import {request} from '$lib/request'
+export async function tokenClaims(token: string): Promise<object> {
     if(token){
         try{
-            let res = await fetch('http://localhost:3030/login/validate', {
-                method: "POST",
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json',
-                    'authorization': token
-                }
-            })
+            let res = await request('http://localhost:3030/login/validate', 'POST', {},{'authorization': token} )
             res = await res.json()
             console.log(res)
         } catch (e) {
-            return false
+            return {}
         }
     }
-    return false
+    return {}
+}
+
+export async function createSessionCookie(user: {username: string, password: string}): Promise<{user: object, token: string}> {
+    try {
+        let res = await request('http://localhost:3030/login', 'POST', {username: user.username, password: user.password})
+        res = await res.json()
+        return res
+    } catch (e) {
+        throw new Error("Credenciais invalidas")
+    }
 }

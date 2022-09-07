@@ -50,6 +50,7 @@ declare module '$env/static/private' {
 	export const TERM: string;
 	export const npm_package_devDependencies_eslint_plugin_svelte3: string;
 	export const npm_config_ignore_scripts: string;
+	export const npm_package_dependencies_axios: string;
 	export const PATH: string;
 	export const NODE: string;
 	export const npm_package_scripts_package: string;
@@ -68,6 +69,7 @@ declare module '$env/static/private' {
 	export const npm_lifecycle_event: string;
 	export const npm_package_version: string;
 	export const npm_config_argv: string;
+	export const npm_package_dependencies_cookie: string;
 	export const npm_package_devDependencies_tslib: string;
 	export const npm_package_devDependencies_svelte: string;
 	export const npm_package_scripts_build: string;
