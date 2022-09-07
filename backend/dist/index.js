@@ -8,7 +8,6 @@ const dotenv_1 = __importDefault(require("dotenv"));
 const mongoose_1 = __importDefault(require("mongoose"));
 //import routes
 const User_1 = __importDefault(require("./routes/User"));
-const Question_1 = __importDefault(require("./routes/Question"));
 const Login_1 = __importDefault(require("./routes/Login"));
 const Hunt_1 = __importDefault(require("./routes/Hunt"));
 const Collectionable_1 = __importDefault(require("./routes/Collectionable"));
@@ -20,7 +19,6 @@ const dbUser = process.env.DB_USERNAME;
 const dbPasswd = process.env.DB_PASSWORD;
 mongoose_1.default.connect(`mongodb+srv://${dbUser}:${dbPasswd}@cluster0.ub24ryp.mongodb.net/?retryWrites=true&w=majority`);
 app.use('/user', User_1.default);
-app.use('/question', Question_1.default);
 app.use('/login', Login_1.default);
 app.use('/hunt', Hunt_1.default);
 app.use('/collectionable', Collectionable_1.default);

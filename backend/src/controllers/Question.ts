@@ -1,13 +1,14 @@
 import {Request, Response} from 'express'
 import QuestionModel, {Question} from '../models/Question'
+import HuntModel, {Hunt} from '../models/Hunt'
 import { HydratedDocument } from 'mongoose'
 
 export const createQuestion = async (req: Request, res: Response) => {
-  console.log(req.body)
   const question: Question = req.body
   const questionModel: HydratedDocument<Question> = new QuestionModel(question)
   try{
-    await questionModel.save()
+    const result = await questionModel.save()
+    await HuntModel.findByIdAndUpdate(req.params.huntId, {questions: [result._id]})
     res.send('Pergunta cadastrada com sucesso')
   } catch(e){
     console.error(e)

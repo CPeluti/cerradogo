@@ -1,6 +1,6 @@
 import express, {Router} from 'express'
 import {createQuestion, updateQuestion, deleteQuestion, readQuestion, readAllQuestions} from '../controllers/Question'
-const router: Router = express.Router()
+const router: Router = express.Router({mergeParams: true})
 router.post('/', createQuestion)
 router.patch('/:id', updateQuestion)
 router.delete('/:id', deleteQuestion)
