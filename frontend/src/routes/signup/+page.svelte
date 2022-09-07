@@ -1,45 +1,27 @@
 <script lang="ts">
-import { singUpUser } from "$lib/auth";
-
-
-  
-  const strengthText = ["", "bad 💩", "ok 😐", "decent 🙂", "solid 💪"];
+import { signUpUser } from "$lib/auth";
+import { NotificationDisplay, notifier } from '@beyonk/svelte-notifications'
 
   let email = ""
   let password = ''
   let nickname = ''
   let senhaConfirmar = ''
-  let showPassword = false;
   let disabled = true;
-  let validations = []
+  let name = ''
 
-  let singUp = async () => {
+  let signUp = async () => {
         try {
-            const {user} = await singUpUser({email, nickname, password})
-            window.location.replace('/')
+            await signUpUser({email, name, nickname, password})
+            window.location.replace('/login')
         } catch (e) {
             // @ts-ignore
             notifier.danger("Falha ao realizar o cadastro")
         }
     }
 
-  function verificar() {
-    let aux = (password!=senhaConfirmar)||(password.length < 6)
-    if(aux){
-      return true
-    }
-  }
-
-  function userExists() {
-    if (nickname.length < 4) {
-      return true
-    }
-    return false
-  }
-
 </script>
   
-<body>
+<div class="tela">
   <form>
     <button class="back">Voltar</button>
     <h2 class="center">Criar Conta</h2>
@@ -49,11 +31,15 @@ import { singUpUser } from "$lib/auth";
     </div>
 
     <div class="field">
-      <input type="email" name="email" class="input" placeholder="Email" bind:value = {email}/>
+      <input name="email" class="input" placeholder="Email" bind:value = {email}/>
     </div>
 
     <div class="field">
-      <input type="user-name" name="userName" class="input" placeholder="Usuario" bind:value = {nickname}/>
+      <input name="userName" class="input" placeholder="Usuario" bind:value = {nickname}/>
+    </div>
+
+    <div class="field">
+      <input name="name" class="input" placeholder="Seu Nome" bind:value = {name}/>
     </div>
 
     <div class="field">
@@ -77,12 +63,12 @@ import { singUpUser } from "$lib/auth";
     </div>
 
     <div class="center">
-      <button on:click={singUp} disabled={(password!=senhaConfirmar)||(password.length < 2)||(!email.includes("@"))||userExists()}>Sign Up</button>
+      <button on:click={signUp} disabled={(password!=senhaConfirmar)||(password.length < 2)||(!email.includes("@"))||(nickname.length < 4)}>Cadastrar</button>
     </div>
     
   </form>
 
-</body>
+</div>
 
 <style>
   form {
@@ -97,6 +83,14 @@ import { singUpUser } from "$lib/auth";
     position: relative;
     border-bottom: 2px dashed var(--text-color);
     transition: 500ms;
+  }
+
+  .tela {
+    width: 20rem;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 3rem;
+    position: relative;
   }
   
   .input {

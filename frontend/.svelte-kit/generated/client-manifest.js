@@ -15,5 +15,5 @@ export const dictionary = {
 	"login": [3],
 	"perfil": [4],
 	"question": [5],
-	"singup": [6]
+	"signup": [6]
 };
