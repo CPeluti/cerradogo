@@ -5,7 +5,7 @@
     import type { Hunt } from "src/interfaces/Hunt";
     const hunts = {name: data.hunt.name,
         location: "string",
-        latlong: [-15.884039920347867, -48.01590311958394]
+        latlong: data.hunt.latlong
     }
     const progress = 7/9*100
 </script>

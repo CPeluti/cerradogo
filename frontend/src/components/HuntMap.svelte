@@ -1,12 +1,30 @@
 <script lang="ts">
     import { goto } from '$app/navigation'
+    import { NotificationDisplay, notifier } from '@beyonk/svelte-notifications'
+    import ProgressBar from "../components/ProgressBar.svelte";
     export let hunt;
     export let id;
-    import ProgressBar from "../components/ProgressBar.svelte";
     const imgUrl = new URL('../images/google_maps.jpg', import.meta.url).href
     const progress = 7/9*100;
+    function shuffle(a: string[]) {
+        for (let i = a.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [a[i], a[j]] = [a[j], a[i]];
+        }
+        return a;
+    }
+
+    let dicas = ()=>{
+        if(hunt.tips.length){
+            let tips = shuffle(hunt.tips)
+            notifier.info(tips[0])
+        } else {
+            notifier.info('Não há dicas disponíveis atualmente.')
+        }
+    }
 </script>
 <main>
+    <NotificationDisplay/>
     <div class="container">
         <div id="nome_caca">
             {hunt.name}
@@ -16,10 +34,9 @@
             7/9
         </div>
         <img id="mapa" src={imgUrl} alt="mapa">
-        <!--div id="information">{hunt.latlong[0]} {hunt.latlong[1]}</div-->
         <div>
             <button id="perfil" class="secondary" disabled>perfil</button>
-            <button id="dica" class="secondary">dica</button>
+            <button id="dica" on:click={dicas} class="secondary">dica</button>
             <button id="coletar" on:click={async () => { await goto(`/hunt/${id}/question`)}}>coletar</button>
             <button id="menu" class="secondary" on:click={async () => { await goto(`/`)}}>menu</button>
             <button id="podio" class="secondary" disabled>podio</button>
