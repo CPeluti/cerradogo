@@ -12,6 +12,7 @@
 		"format": "prettier --write --plugin-search-dir=. ."
 	},
 	"devDependencies": {
+		"@beyonk/svelte-notifications": "^4.2.0",
 		"@sveltejs/adapter-auto": "next",
 		"@sveltejs/kit": "next",
 		"@types/google.maps": "^3.50.0",
@@ -29,5 +30,10 @@
 		"typescript": "^4.7.4",
 		"vite": "^3.0.0"
 	},
-	"type": "module"
+	"type": "module",
+	"dependencies": {
+		"cookie": "^0.5.0",
+		"svelte-notifications": "^0.9.97",
+		"svelte-fa": "^3.0.3"
+	}
 }

@@ -1,15 +1,16 @@
 import { Schema, model, connect } from 'mongoose'
+import imageSchema, {Image} from './Image';
 
 export interface Question {
     question: string;
-    rightanswer: string;
-    wronganswer: Array<string>;
+    img: Image;
+    answers: Array<{text:string, right: boolean, selected: string}>;
 }
 
 const questionSchema = new Schema<Question>({
     question: {type: String, required: true},
-    rightanswer: {type: String, required: true},
-    wronganswer: {type: [String], required: true},
+    img: imageSchema,
+    answers: {type: [{text:String, right: Boolean, selected: String}], required: true}
 })
 
 const QuestionModel = model<Question>('Question', questionSchema)
