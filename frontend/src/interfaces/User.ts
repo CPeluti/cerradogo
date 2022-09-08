@@ -3,7 +3,7 @@ export interface User {
     name: string;
     email: string;
     password: string;
-    avatar?: string;
+    img?: {file: string, fileType:string};
     experience: number;
     rank: number;
     leaguePoints: number;
