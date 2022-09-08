@@ -1,13 +1,12 @@
 <script lang="ts">
     import ProgressBar from "./ProgressBar.svelte"
-    export let user: {nickname: string,
-        lvl: number,
-        xp: number
-    }
+    export let user;
+    const image = `data:${user.img.fileType};base64,${user.img.file}`
+    console.log(image)
 </script>
 <div class="container">
     <div class="icon">
-        <div id="img_temp"></div>
+        <img src="{image}" alt="Foto de perfil">
         <ProgressBar color="#06FFF0" progress={user.xp}/>
     </div>
     <div class="text">
@@ -47,13 +46,13 @@
         justify-content: center;
         justify-items: center;
     }
-    #img_temp{
+    /*#img_temp{
         margin-bottom: 10px;
         background-color: gray;
         width: 50px;
         height: 50px;
         border-radius: 100%;
-    }
+    }*/
     .container{
         padding-top: 20px;
         display: flex;
