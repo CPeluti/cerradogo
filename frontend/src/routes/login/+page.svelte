@@ -27,7 +27,7 @@
         <input class="input" type="password" bind:value={password} placeholder="Password"/>
     </div>
     <button class="btn" on:click={login}>entrar</button>
-    <button class="btn">cadastrar</button>
+    <button class="btn" on:click={async ()=>{await goto('/signup')}}>cadastrar</button>
 </div>
 
 <style>
