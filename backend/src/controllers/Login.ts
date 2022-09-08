@@ -2,6 +2,7 @@ import {Request, Response} from 'express'
 import authentication from '../helpers/authentication'
 import dotenv from 'dotenv'
 dotenv.config()
+const age: number = process.env.EXPIRESIN ? parseInt(process.env.EXPIRESIN) : 15000
 const key = "teste"
 const create = async (req: Request, res: Response) => {
   console.log(req.body)
@@ -11,9 +12,9 @@ const create = async (req: Request, res: Response) => {
         res.cookie("session", token.token, {
           path: '/',
           httpOnly: true,
-          maxAge: process.env.EXPIRESIN,
+          maxAge: age,
         })
-        res.send({user: token.user})
+        res.status(200).send({user: token.user})
   } catch(e){
     console.error(e)
     res.status(401).end()

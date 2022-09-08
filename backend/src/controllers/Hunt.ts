@@ -42,7 +42,7 @@ export const deleteHunt = async (req: Request, res: Response) => {
 
 export const readAllHunts = async (req: Request, res: Response) => {
   try {
-    const hunt = await HuntModel.find({})
+    const hunt = await HuntModel.find({}).select('-questions')
     res.send(hunt)
   } catch (e){
     console.error(e)
@@ -53,7 +53,7 @@ export const readAllHunts = async (req: Request, res: Response) => {
 export const readHunt = async (req: Request, res: Response) => {
   const id = req.params.id
   try{
-    const hunt = await HuntModel.findById(id)
+    const hunt = await HuntModel.findById(id).select('-questions')
     if(hunt===null){
       throw(new Error("Caça nao encontrada"))
     } 
