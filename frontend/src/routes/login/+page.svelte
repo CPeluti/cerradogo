@@ -1,5 +1,5 @@
 <script>
-    
+    import { userStore } from '../../stores/store'
     import { NotificationDisplay, notifier } from '@beyonk/svelte-notifications'
     import {createSessionCookie} from '$lib/auth'
 
@@ -9,6 +9,8 @@
     let login = async () => {
         try {
             const {user} = await createSessionCookie({username, password})
+            console.log(user)
+            userStore.set({...user})
             window.location.replace('/')
         } catch (e) {
             // @ts-ignore

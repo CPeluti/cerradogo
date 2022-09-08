@@ -1,15 +1,13 @@
 
 <script lang="ts">
-    import {user} from '../stores/store'
+    import type { User } from '../interfaces/User'
+    import {userStore} from '../stores/store'
     import HuntCard from "../components/HuntCard.svelte";
     import Perfil from "../components/Perfil.svelte";
     const promise = fetch("http://localhost:3030/hunt", {method: "GET"}).then(res => res.json())
     
-    let userValue: {nickname: string,
-        lvl: number,
-        xp: number
-    }
-    user.subscribe(value=>{
+    let userValue: User
+    userStore.subscribe(value=>{
         userValue = value
     })
 </script>

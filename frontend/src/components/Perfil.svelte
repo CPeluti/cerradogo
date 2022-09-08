@@ -1,14 +1,12 @@
 <script lang="ts">
+    import type { User } from '../interfaces/User'
     import ProgressBar from "./ProgressBar.svelte"
-    export let user: {nickname: string,
-        lvl: number,
-        xp: number
-    }
+    export let user: User
 </script>
 <div class="container">
     <div class="icon">
         <div id="img_temp"></div>
-        <ProgressBar color="#06FFF0" progress={user.xp}/>
+        <ProgressBar color="#06FFF0" progress={user.experience}/>
     </div>
     <div class="text">
         <span>
@@ -17,7 +15,7 @@
             </h1>
         </span>
         <span>
-            <h2>lvl: {user.lvl}</h2>
+            <h2>lvl: {Math.floor(user.experience/100)}</h2>
         </span>
     </div>
 </div>
