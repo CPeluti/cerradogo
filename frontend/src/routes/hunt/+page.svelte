@@ -4,7 +4,8 @@
     const hunts:Array<Hunt> = 
         [{name: "Olhos D'água",
         location: "string",
-        latlong: [-15.884039920347867, -48.01590311958394]}]
+        latlong: [-15.884039920347867, -48.01590311958394], 
+        tips:["fica na unb", "perto do icc"]}]
     const progress = 7/9*100
 </script>
 {#each hunts as hunt}

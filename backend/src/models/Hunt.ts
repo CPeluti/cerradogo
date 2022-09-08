@@ -8,6 +8,7 @@ export interface Hunt{
         img: Image
         latlong: number[]
         questions: string[]
+        tips: string[]
     }
 
 const huntSchema = new Schema<Hunt>({
@@ -15,6 +16,7 @@ const huntSchema = new Schema<Hunt>({
     location: {type: String, required: true},
     latlong: {type: [Number], required: true},
     questions: {type: [String], select: true},
+    tips: {type: [String], required: true},
     img: imageSchema
 })
 
