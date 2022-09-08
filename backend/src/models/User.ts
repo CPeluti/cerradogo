@@ -9,6 +9,9 @@ export interface User {
     experience: number;
     rank: number;
     leaguePoints: number;
+    hunts: [{
+        huntId: string, progress: number
+    }]
 }
 
 const userSchema = new Schema<User>({
@@ -20,6 +23,7 @@ const userSchema = new Schema<User>({
     experience: {type: Number, required: true},
     rank: {type: Number, required: true},
     leaguePoints: {type: Number, required: true},
+    hunts: {type: [{huntId: String, progress: Number}], required: false}
 })
 
 const UserModel = model<User>('User', userSchema)
