@@ -1,1 +1,1 @@
-export { default as component } from "../../../src/routes/hunt/[huntId]/question/+page.svelte";
+export { default as component } from "..\\..\\..\\src\\routes\\hunt\\+page.svelte";

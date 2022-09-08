@@ -26,231 +26,104 @@
  * ```
  */
 declare module '$env/static/private' {
-	export const SHELL: string;
-	export const npm_command: string;
-	export const SESSION_MANAGER: string;
-	export const npm_config_userconfig: string;
-	export const COLORTERM: string;
-	export const XDG_CONFIG_DIRS: string;
-	export const npm_config_cache: string;
-	export const XDG_SESSION_PATH: string;
-	export const XDG_MENU_PREFIX: string;
-	export const TERM_PROGRAM_VERSION: string;
-	export const APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL: string;
-	export const NODE: string;
-	export const LC_ADDRESS: string;
-	export const LC_NAME: string;
-	export const SSH_AUTH_SOCK: string;
+	export const ACLOCAL_PATH: string;
+	export const ALLUSERSPROFILE: string;
+	export const APPDATA: string;
+	export const ChocolateyInstall: string;
+	export const ChocolateyLastPathUpdate: string;
 	export const COLOR: string;
-	export const npm_config_local_prefix: string;
-	export const DESKTOP_SESSION: string;
-	export const LC_MONETARY: string;
-	export const SSH_AGENT_PID: string;
-	export const BAMF_DESKTOP_FILE_HINT: string;
-	export const NO_AT_BRIDGE: string;
-	export const npm_config_globalconfig: string;
-	export const EDITOR: string;
-	export const GTK_MODULES: string;
-	export const XDG_SEAT: string;
-	export const PWD: string;
-	export const GSETTINGS_SCHEMA_DIR: string;
-	export const LOGNAME: string;
-	export const XDG_SESSION_DESKTOP: string;
-	export const QT_QPA_PLATFORMTHEME: string;
-	export const XDG_SESSION_TYPE: string;
-	export const PANEL_GDK_CORE_DEVICE_EVENTS: string;
-	export const npm_config_init_module: string;
-	export const XAUTHORITY: string;
-	export const VSCODE_GIT_ASKPASS_NODE: string;
-	export const XDG_GREETER_DATA_DIR: string;
-	export const MOTD_SHOWN: string;
-	export const GDM_LANG: string;
-	export const GTK2_RC_FILES: string;
-	export const HOME: string;
-	export const LANG: string;
-	export const LC_PAPER: string;
-	export const LS_COLORS: string;
-	export const XDG_CURRENT_DESKTOP: string;
-	export const npm_package_version: string;
-	export const GIT_ASKPASS: string;
-	export const XDG_SEAT_PATH: string;
-	export const INIT_CWD: string;
-	export const CHROME_DESKTOP: string;
-	export const npm_lifecycle_script: string;
-	export const VSCODE_GIT_ASKPASS_EXTRA_ARGS: string;
-	export const NPM_CONFIG_PREFIX: string;
-	export const XDG_SESSION_CLASS: string;
-	export const TERM: string;
-	export const LC_IDENTIFICATION: string;
-	export const npm_package_name: string;
-	export const ASDF_DIR: string;
-	export const USER: string;
-	export const VSCODE_GIT_IPC_HANDLE: string;
+	export const COMMONPROGRAMFILES: string;
+	export const CommonProgramW6432: string;
+	export const COMPUTERNAME: string;
+	export const COMSPEC: string;
+	export const CONFIG_SITE: string;
 	export const DISPLAY: string;
-	export const npm_lifecycle_event: string;
-	export const SHLVL: string;
-	export const LC_TELEPHONE: string;
-	export const LC_MEASUREMENT: string;
-	export const XDG_VTNR: string;
-	export const XDG_SESSION_ID: string;
-	export const npm_config_user_agent: string;
-	export const npm_execpath: string;
-	export const XDG_RUNTIME_DIR: string;
-	export const npm_package_json: string;
-	export const LC_TIME: string;
-	export const VSCODE_GIT_ASKPASS_MAIN: string;
-	export const QT_AUTO_SCREEN_SCALE_FACTOR: string;
-	export const GTK3_MODULES: string;
-	export const XDG_DATA_DIRS: string;
-	export const GDK_BACKEND: string;
-	export const npm_config_noproxy: string;
-	export const PATH: string;
+	export const DriverData: string;
+	export const EDITOR: string;
+	export const EXEPATH: string;
+	export const FPS_BROWSER_APP_PROFILE_STRING: string;
+	export const FPS_BROWSER_USER_PROFILE_STRING: string;
+	export const HOME: string;
+	export const HOMEDRIVE: string;
+	export const HOMEPATH: string;
+	export const HOSTNAME: string;
+	export const INFOPATH: string;
+	export const INIT_CWD: string;
+	export const INTEL_DEV_REDIST: string;
+	export const LC_CTYPE: string;
+	export const LOCALAPPDATA: string;
+	export const LOGONSERVER: string;
+	export const MANPATH: string;
+	export const MIC_LD_LIBRARY_PATH: string;
+	export const MINGW_CHOST: string;
+	export const MINGW_PACKAGE_PREFIX: string;
+	export const MINGW_PREFIX: string;
+	export const MSYSTEM: string;
+	export const MSYSTEM_CARCH: string;
+	export const MSYSTEM_CHOST: string;
+	export const MSYSTEM_PREFIX: string;
+	export const NODE: string;
+	export const npm_command: string;
+	export const npm_config_cache: string;
+	export const npm_config_globalconfig: string;
+	export const npm_config_global_prefix: string;
+	export const npm_config_init_module: string;
+	export const npm_config_local_prefix: string;
 	export const npm_config_metrics_registry: string;
 	export const npm_config_node_gyp: string;
-	export const GDMSESSION: string;
-	export const ORIGINAL_XDG_CURRENT_DESKTOP: string;
-	export const DBUS_SESSION_BUS_ADDRESS: string;
-	export const npm_config_global_prefix: string;
-	export const MAIL: string;
+	export const npm_config_noproxy: string;
+	export const npm_config_prefix: string;
+	export const npm_config_userconfig: string;
+	export const npm_config_user_agent: string;
+	export const npm_execpath: string;
+	export const npm_lifecycle_event: string;
+	export const npm_lifecycle_script: string;
 	export const npm_node_execpath: string;
-	export const LC_NUMERIC: string;
+	export const npm_package_json: string;
+	export const npm_package_name: string;
+	export const npm_package_version: string;
+	export const NUMBER_OF_PROCESSORS: string;
+	export const OLDPWD: string;
+	export const OneDrive: string;
+	export const ORIGINAL_PATH: string;
+	export const ORIGINAL_TEMP: string;
+	export const ORIGINAL_TMP: string;
+	export const OS: string;
+	export const PATH: string;
+	export const PATHEXT: string;
+	export const PKG_CONFIG_PATH: string;
+	export const PLINK_PROTOCOL: string;
+	export const PROCESSOR_ARCHITECTURE: string;
+	export const PROCESSOR_IDENTIFIER: string;
+	export const PROCESSOR_LEVEL: string;
+	export const PROCESSOR_REVISION: string;
+	export const ProgramData: string;
+	export const PROGRAMFILES: string;
+	export const ProgramW6432: string;
+	export const PROMPT: string;
+	export const PSModulePath: string;
+	export const PUBLIC: string;
+	export const PWD: string;
+	export const QSYS_ROOTDIR: string;
+	export const QUARTUS_ROOTDIR: string;
+	export const SESSIONNAME: string;
+	export const SHELL: string;
+	export const SHLVL: string;
+	export const SOPC_KIT_NIOS2: string;
+	export const SSH_ASKPASS: string;
+	export const SYSTEMDRIVE: string;
+	export const SYSTEMROOT: string;
+	export const TEMP: string;
+	export const TERM: string;
 	export const TERM_PROGRAM: string;
+	export const TERM_PROGRAM_VERSION: string;
+	export const TMP: string;
+	export const TMPDIR: string;
+	export const USERDOMAIN: string;
+	export const USERDOMAIN_ROAMINGPROFILE: string;
+	export const USERNAME: string;
+	export const USERPROFILE: string;
+	export const WINDIR: string;
+	export const WORKON_HOME: string;
 	export const _: string;
-}
-
-/**
- * Similar to [`$env/static/private`](https://kit.svelte.dev/docs/modules#$env-static-private), except that it only includes environment variables that begin with [`config.kit.env.publicPrefix`](https://kit.svelte.dev/docs/configuration#kit-env-publicprefix) (which defaults to `PUBLIC_`), and can therefore safely be exposed to client-side code.
- * 
- * Values are replaced statically at build time.
- * 
- * ```ts
- * import { PUBLIC_BASE_URL } from '$env/static/public';
- * ```
- */
-declare module '$env/static/public' {
-
-}
-
-/**
- * This module provides access to runtime environment variables, as defined by the platform you're running on. For example if you're using [`adapter-node`](https://github.com/sveltejs/kit/tree/master/packages/adapter-node) (or running [`vite preview`](https://kit.svelte.dev/docs/cli)), this is equivalent to `process.env`. This module only includes variables that _do not_ begin with [`config.kit.env.publicPrefix`](https://kit.svelte.dev/docs/configuration#kit-env-publicprefix).
- * 
- * This module cannot be imported into client-side code.
- * 
- * ```ts
- * import { env } from '$env/dynamic/private';
- * console.log(env.DEPLOYMENT_SPECIFIC_VARIABLE);
- * ```
- * 
- * > In `dev`, `$env/dynamic` always includes environment variables from `.env`. In `prod`, this behavior will depend on your adapter.
- */
-declare module '$env/dynamic/private' {
-	export const env: {
-		SHELL: string;
-		npm_command: string;
-		SESSION_MANAGER: string;
-		npm_config_userconfig: string;
-		COLORTERM: string;
-		XDG_CONFIG_DIRS: string;
-		npm_config_cache: string;
-		XDG_SESSION_PATH: string;
-		XDG_MENU_PREFIX: string;
-		TERM_PROGRAM_VERSION: string;
-		APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL: string;
-		NODE: string;
-		LC_ADDRESS: string;
-		LC_NAME: string;
-		SSH_AUTH_SOCK: string;
-		COLOR: string;
-		npm_config_local_prefix: string;
-		DESKTOP_SESSION: string;
-		LC_MONETARY: string;
-		SSH_AGENT_PID: string;
-		BAMF_DESKTOP_FILE_HINT: string;
-		NO_AT_BRIDGE: string;
-		npm_config_globalconfig: string;
-		EDITOR: string;
-		GTK_MODULES: string;
-		XDG_SEAT: string;
-		PWD: string;
-		GSETTINGS_SCHEMA_DIR: string;
-		LOGNAME: string;
-		XDG_SESSION_DESKTOP: string;
-		QT_QPA_PLATFORMTHEME: string;
-		XDG_SESSION_TYPE: string;
-		PANEL_GDK_CORE_DEVICE_EVENTS: string;
-		npm_config_init_module: string;
-		XAUTHORITY: string;
-		VSCODE_GIT_ASKPASS_NODE: string;
-		XDG_GREETER_DATA_DIR: string;
-		MOTD_SHOWN: string;
-		GDM_LANG: string;
-		GTK2_RC_FILES: string;
-		HOME: string;
-		LANG: string;
-		LC_PAPER: string;
-		LS_COLORS: string;
-		XDG_CURRENT_DESKTOP: string;
-		npm_package_version: string;
-		GIT_ASKPASS: string;
-		XDG_SEAT_PATH: string;
-		INIT_CWD: string;
-		CHROME_DESKTOP: string;
-		npm_lifecycle_script: string;
-		VSCODE_GIT_ASKPASS_EXTRA_ARGS: string;
-		NPM_CONFIG_PREFIX: string;
-		XDG_SESSION_CLASS: string;
-		TERM: string;
-		LC_IDENTIFICATION: string;
-		npm_package_name: string;
-		ASDF_DIR: string;
-		USER: string;
-		VSCODE_GIT_IPC_HANDLE: string;
-		DISPLAY: string;
-		npm_lifecycle_event: string;
-		SHLVL: string;
-		LC_TELEPHONE: string;
-		LC_MEASUREMENT: string;
-		XDG_VTNR: string;
-		XDG_SESSION_ID: string;
-		npm_config_user_agent: string;
-		npm_execpath: string;
-		XDG_RUNTIME_DIR: string;
-		npm_package_json: string;
-		LC_TIME: string;
-		VSCODE_GIT_ASKPASS_MAIN: string;
-		QT_AUTO_SCREEN_SCALE_FACTOR: string;
-		GTK3_MODULES: string;
-		XDG_DATA_DIRS: string;
-		GDK_BACKEND: string;
-		npm_config_noproxy: string;
-		PATH: string;
-		npm_config_metrics_registry: string;
-		npm_config_node_gyp: string;
-		GDMSESSION: string;
-		ORIGINAL_XDG_CURRENT_DESKTOP: string;
-		DBUS_SESSION_BUS_ADDRESS: string;
-		npm_config_global_prefix: string;
-		MAIL: string;
-		npm_node_execpath: string;
-		LC_NUMERIC: string;
-		TERM_PROGRAM: string;
-		_: string;
-		[key: string]: string | undefined;
-	}
-}
-
-/**
- * Similar to [`$env/dynamic/private`](https://kit.svelte.dev/docs/modules#$env-dynamic-private), but only includes variables that begin with [`config.kit.env.publicPrefix`](https://kit.svelte.dev/docs/configuration#kit-env-publicprefix) (which defaults to `PUBLIC_`), and can therefore safely be exposed to client-side code.
- * 
- * Note that public dynamic environment variables must all be sent from the server to the client, causing larger network requests — when possible, use `$env/static/public` instead.
- * 
- * ```ts
- * import { env } from '$env/dynamic/public';
- * console.log(env.PUBLIC_DEPLOYMENT_SPECIFIC_VARIABLE);
- * ```
- */
-declare module '$env/dynamic/public' {
-	export const env: {
-		[key: string]: string | undefined;
-	}
 }
