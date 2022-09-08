@@ -6,16 +6,17 @@ declare module '$env/static/public' {
 }
 
 declare module '$env/static/private' {
-	export const USER: string;
-	export const npm_config_version_commit_hooks: string;
-	export const npm_config_user_agent: string;
-	export const npm_config_bin_links: string;
-	export const npm_node_execpath: string;
-	export const npm_package_devDependencies_vite: string;
-	export const npm_config_init_version: string;
-	export const SHLVL: string;
-	export const WT_PROFILE_ID: string;
-	export const LESS: string;
+	export const ALLUSERSPROFILE: string;
+	export const APPDATA: string;
+	export const CABAL_DIR: string;
+	export const COLOR: string;
+	export const CommonProgramFiles: string;
+	export const CommonProgramW6432: string;
+	export const COMPUTERNAME: string;
+	export const ComSpec: string;
+	export const DriverData: string;
+	export const EDITOR: string;
+	export const GHCUP_INSTALL_BASE_PREFIX: string;
 	export const HOME: string;
 	export const ASDF_DIR: string;
 	export const OLDPWD: string;
@@ -89,4 +90,6 @@ declare module '$env/static/private' {
 	export const INIT_CWD: string;
 	export const NPM_CONFIG_PREFIX: string;
 	export const WSLENV: string;
+	export const WT_PROFILE_ID: string;
+	export const WT_SESSION: string;
 }

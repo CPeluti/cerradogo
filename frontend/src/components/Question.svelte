@@ -4,7 +4,11 @@
     import AnswerBtn from "./AnswerBtn.svelte"
 
     export let question: QuestionInterface
-    const image = `data:${question.img.file};base64,${question.img.fileType}`
+    let image = ""
+    if (JSON.stringify(question.img) !== JSON.stringify({file: "", type: ""})) {
+        image = `data:image/jpeg;base64,${question.img}`
+    }
+
     const quest = question.question
     let answers = shuffle(question.answers)
 
