@@ -14,8 +14,7 @@ const create = async (req: Request, res: Response) => {
           httpOnly: true,
           maxAge: age,
         })
-        console.log(token.user)
-        res.send({user: token.user})
+        res.status(200).send({user: token.user})
   } catch(e){
     console.error(e)
     res.status(401).end()
