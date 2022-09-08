@@ -1,13 +1,14 @@
 import {Request, Response} from 'express'
 import QuestionModel, {Question} from '../models/Question'
+import HuntModel, {Hunt} from '../models/Hunt'
 import { HydratedDocument } from 'mongoose'
 
 export const createQuestion = async (req: Request, res: Response) => {
-  console.log(req.body)
   const question: Question = req.body
   const questionModel: HydratedDocument<Question> = new QuestionModel(question)
   try{
-    await questionModel.save()
+    const result = await questionModel.save()
+    await HuntModel.findByIdAndUpdate(req.params.huntId, {$push: {questions: [result._id]}})
     res.send('Pergunta cadastrada com sucesso')
   } catch(e){
     console.error(e)
@@ -41,8 +42,15 @@ export const deleteQuestion = async (req: Request, res: Response) => {
 
 export const readAllQuestions = async (req: Request, res: Response) => {
   try {
-    const question = await QuestionModel.find({})
-    res.send(question)
+    const hunt = await HuntModel.findById(req.params.huntId).select('questions -_id')
+    if(hunt?.questions){
+      const question = await QuestionModel.find({
+        '_id': {$in: hunt.questions}
+      })
+      res.send(question)
+    } else {
+      res.send([])
+    }
   } catch (e){
     console.error(e)
     res.status(404).send("Nao foi possivel achar a pergunta")
@@ -60,6 +68,18 @@ export const readQuestion = async (req: Request, res: Response) => {
   } catch(e){
     console.error(e)
     res.status(404).send("Nao foi possivel achar a pergunta")
+  }
+}
+
+export const randomQuestion = async (req: Request, res: Response) => {
+  try {
+    const hunt = await HuntModel.findById(req.params.huntId).select('questions -_id')
+    console.log(hunt)
+    const id =  hunt?.questions[Math.floor(Math.random() * hunt.questions.length)]
+    const question = await QuestionModel.findById(id)
+    res.send(question)
+  } catch {
+    res.status(404).send("falha ao pegar uma pergunta aleatória")
   }
 }
 

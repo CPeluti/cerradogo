@@ -1,37 +1,48 @@
-<script lang="ts">
-    import HuntCard from "../components/HuntCard.svelte"
-    import type { Hunt } from "src/interfaces/Hunt";
-    import ProgressBar from "../components/ProgressBar.svelte";
-    const hunts:Array<Hunt> = 
-        [{name: "string",
-        location: "string",
-        latlong: [13821839128, -21319038]}, {name: "string2",
-        location: "string2",
-        latlong: [1382183239128, -213190238]}, {name: "string",
-        location: "string",
-        latlong: [13821839128, -21319038]}, {name: "string2",
-        location: "string2",
-        latlong: [1382183239128, -213190238]}, {name: "string",
-        location: "string",
-        latlong: [13821839128, -21319038]}, {name: "string2",
-        location: "string2",
-        latlong: [1382183239128, -213190238]}, {name: "string",
-        location: "string",
-        latlong: [13821839128, -21319038]}, {name: "string2",
-        location: "string2",
-        latlong: [1382183239128, -213190238]}, {name: "string",
-        location: "string",
-        latlong: [13821839128, -21319038]}, {name: "string2",
-        location: "string2",
-        latlong: [1382183239128, -213190238]}, {name: "string",
-        location: "string",
-        latlong: [13821839128, -21319038]}, {name: "string2",
-        location: "string2",
-        latlong: [1382183239128, -213190238]}]
-    const progress = 7/9*100
-</script>
-{#each hunts as hunt}
-    <HuntCard hunt={hunt}/>
-    <ProgressBar progress={progress}/>
 
-{/each}
+<script lang="ts">
+    import {user} from '../stores/store'
+    import HuntCard from "../components/HuntCard.svelte";
+    import Perfil from "../components/Perfil.svelte";
+    const promise = fetch("http://localhost:3030/hunt", {method: "GET"}).then(res => res.json())
+    
+    let userValue: {nickname: string,
+        lvl: number,
+        xp: number
+    }
+    user.subscribe(value=>{
+        userValue = value
+    })
+</script>
+
+<div class="container">
+    <div style="display: flex; flex-direction: column;">
+        <div id="perfil">
+            <Perfil user={userValue}/>
+        </div>
+        <div style="margin-top: 150px;">
+            {#await promise then data}
+            {#each data as hunt}
+            <div style="margin-bottom: 20px;">
+                <HuntCard hunt={hunt}/>
+            </div>
+            {/each}
+            
+            {/await}
+        </div>
+    </div>
+</div>
+
+<style>
+    #perfil{
+        position: fixed;
+        height: 120px;
+        z-index: 999;
+    }
+    .container{
+        display: flex;
+        justify-content: center;
+        justify-items: center;
+        width: 100%;
+        height: 100%;
+    }
+</style>
