@@ -1,8 +1,14 @@
-<script lang="ts">export let hunt;
+<script lang="ts">
+    export let hunt;
     import ProgressBar from "../components/ProgressBar.svelte";
+    import { NotificationDisplay, notifier } from '@beyonk/svelte-notifications'
     const progress = 7/9*100;
+    let dicas = ()=>{
+        notifier.info(hunt.tips[0])
+    }
 </script>
 <main>
+    <NotificationDisplay/>
     <div id="nome_caca">
         {hunt.name}
     </div>
@@ -11,16 +17,23 @@
         7/9
     </div>
     <img id="mapa" src="http://127.0.0.1:8887/google_maps.jpg" alt="mapa">
+    
     <!--div id="information">{hunt.latlong[0]} {hunt.latlong[1]}</div-->
     <div class="scrollmenu">
         <img id="perfil" src="http://127.0.0.1:8887/perfil.png" alt="botao perfil">
-        <img id="dica" src="http://127.0.0.1:8887/dica.png" alt="botao dica">
+        <img id="dica" on:click={dicas} src="http://127.0.0.1:8887/dica.png" alt="botao dica">
         <img id="coletar" src="http://127.0.0.1:8887/coletar.png" alt="botao coletar">
         <img id="menu" src="http://127.0.0.1:8887/menu.png" alt="botao menu">
         <img id="podio" src="http://127.0.0.1:8887/podio.png" alt="botao podio">
     </div>
 
     <style>
+        .tips-container{
+            background: grey;
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+            border-radius: 27px;
+            height: 325px;
+        }
         div.scrollmenu {
             background-color: white;
             overflow: auto;
