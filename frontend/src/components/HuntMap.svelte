@@ -3,8 +3,17 @@
     import ProgressBar from "../components/ProgressBar.svelte";
     import { NotificationDisplay, notifier } from '@beyonk/svelte-notifications'
     const progress = 7/9*100;
+    function shuffle(a: string[]) {
+        for (let i = a.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [a[i], a[j]] = [a[j], a[i]];
+        }
+        return a;
+    }
+
     let dicas = ()=>{
-        notifier.info(hunt.tips[0])
+        let tips = shuffle(hunt.tips)
+        notifier.info(tips[0])
     }
 </script>
 <main>
