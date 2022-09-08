@@ -13,11 +13,11 @@
     <img id="mapa" src="http://127.0.0.1:8887/google_maps.jpg" alt="mapa">
     <!--div id="information">{hunt.latlong[0]} {hunt.latlong[1]}</div-->
     <div class="scrollmenu">
-        <img src="http://127.0.0.1:8887/perfil.png" alt="botao perfil">
-        <img src="http://127.0.0.1:8887/dica.png" alt="botao dica">
-        <img src="http://127.0.0.1:8887/coletar.png" alt="botao coletar">
-        <img src="http://127.0.0.1:8887/menu.png" alt="botao menu">
-        <img src="http://127.0.0.1:8887/podio.png" alt="botao podio">
+        <img id="perfil" src="http://127.0.0.1:8887/perfil.png" alt="botao perfil">
+        <img id="dica" src="http://127.0.0.1:8887/dica.png" alt="botao dica">
+        <img id="coletar" src="http://127.0.0.1:8887/coletar.png" alt="botao coletar">
+        <img id="menu" src="http://127.0.0.1:8887/menu.png" alt="botao menu">
+        <img id="podio" src="http://127.0.0.1:8887/podio.png" alt="botao podio">
     </div>
 
     <style>
@@ -35,6 +35,9 @@
             padding-left:152px;
             text-decoration: none;
             transition: filter 0.5s;
+        }
+        #podio{
+            filter: grayscale(100%);
         }
 
         div.scrollmenu img:hover {
