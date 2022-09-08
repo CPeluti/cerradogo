@@ -1,5 +1,6 @@
-<script>
-    
+<script lang="ts">
+    import { goto } from '$app/navigation'
+    import { userStore } from '../../stores/store'
     import { NotificationDisplay, notifier } from '@beyonk/svelte-notifications'
     import {createSessionCookie} from '$lib/auth'
 
@@ -9,7 +10,8 @@
     let login = async () => {
         try {
             const {user} = await createSessionCookie({username, password})
-            window.location.replace('/')
+            userStore.set({...user})
+            await goto('/')
         } catch (e) {
             // @ts-ignore
             notifier.danger("Falha ao realizar login")

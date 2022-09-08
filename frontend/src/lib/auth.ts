@@ -1,4 +1,6 @@
 import {request} from '$lib/request'
+import type {User} from '../interfaces/User'
+
 export async function tokenClaims(token: string): Promise<object> {
     if(token){
         try{
@@ -12,11 +14,11 @@ export async function tokenClaims(token: string): Promise<object> {
     return {}
 }
 
-export async function createSessionCookie(user: {username: string, password: string}): Promise<{user: object, token: string}> {
+export async function createSessionCookie(user: {username: string, password: string}): Promise<User> {
     try {
         let res = await request('http://localhost:3030/login', 'POST', {username: user.username, password: user.password})
-        res = await res.json()
-        return res
+        const userRes: User = await res.json()
+        return userRes
     } catch (e) {
         throw new Error("Credenciais invalidas")
     }
