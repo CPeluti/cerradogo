@@ -3,7 +3,6 @@ import CollectionableModel, {Collectionable} from '../models/Collectionable'
 import { HydratedDocument } from 'mongoose'
 
 export const createCollectionable = async (req: Request, res: Response) => {
-  //console.log(req.body)
   const collec: Collectionable = req.body
   const collecModel: HydratedDocument<Collectionable> = new CollectionableModel(collec)
   try{

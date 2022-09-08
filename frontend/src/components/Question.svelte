@@ -1,8 +1,18 @@
 <script lang="ts">
     import { goto, afterNavigate } from '$app/navigation';
     import type QuestionInterface from "interfaces/Question";
+    import {request} from '$lib/request'
     import AnswerBtn from "./AnswerBtn.svelte"
     export let question: QuestionInterface
+    export let hunt
+
+    import {userStore} from '../stores/store'
+    
+    let userValue
+    userStore.subscribe(value=>{
+        userValue = value
+    })
+
     let previousPage : string | undefined;
     afterNavigate((navigation):void => {
         previousPage = navigation.from?.pathname
@@ -20,7 +30,7 @@
     }
 
    
-    function showAnswer(option: {text:string, right: boolean, selected: string}){
+    async function showAnswer(option: {text:string, right: boolean, selected: string}){
         if(!disabled){
             disabled = true
             for (let a of answers){
@@ -36,6 +46,9 @@
     
             if(option.right === true) {
                 select = 'true'
+                let res = await request(`http://localhost:3030/user/point`, "POST", {id: hunt.id, player: userValue['_id']})
+                res = await res.json()
+                userStore.set({...res})
             }
             else {
                 select = 'false'

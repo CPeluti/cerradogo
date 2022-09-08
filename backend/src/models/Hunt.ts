@@ -7,7 +7,8 @@ export interface Hunt{
         location: string
         img: Image
         latlong: number[]
-        questions: string[]
+        questions?: string[]
+        questionsNumber?: number
         tips: string[]
     }
 

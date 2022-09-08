@@ -7,4 +7,5 @@ export interface User {
     experience: number;
     rank: number;
     leaguePoints: number;
+    hunts: [{id: string, progress: number}]
 }

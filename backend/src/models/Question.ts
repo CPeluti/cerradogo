@@ -1,4 +1,4 @@
-import { Schema, model, connect } from 'mongoose'
+import { Schema, model } from 'mongoose'
 import imageSchema, {Image} from './Image';
 
 export interface Question {

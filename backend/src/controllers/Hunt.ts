@@ -1,9 +1,8 @@
 import {Request, Response} from 'express'
 import HuntModel, {Hunt} from '../models/Hunt'
-import { HydratedDocument } from 'mongoose'
-
+import mongoose, { HydratedDocument } from 'mongoose'
+const ObjectId = mongoose.Types.ObjectId;
 export const createHunt = async (req: Request, res: Response) => {
-  console.log(req.body)
   const hunt: Hunt = req.body
   const huntModel: HydratedDocument<Hunt> = new HuntModel(hunt)
   try{
@@ -42,7 +41,10 @@ export const deleteHunt = async (req: Request, res: Response) => {
 
 export const readAllHunts = async (req: Request, res: Response) => {
   try {
-    const hunt = await HuntModel.find({}).select('-questions')
+    let hunt = await HuntModel.aggregate([
+      {$addFields: { totalQuestions: {$size:'$questions' }}},
+      { $unset: "questions" }
+    ])
     res.send(hunt)
   } catch (e){
     console.error(e)
@@ -53,11 +55,15 @@ export const readAllHunts = async (req: Request, res: Response) => {
 export const readHunt = async (req: Request, res: Response) => {
   const id = req.params.id
   try{
-    const hunt = await HuntModel.findById(id).select('-questions')
+    const hunt = await HuntModel.aggregate([
+      { "$match": { "_id":  ObjectId(id) }},
+      {$addFields: { totalQuestions: {$size:'$questions' }}},
+      { $unset: "questions" }
+    ])
     if(hunt===null){
       throw(new Error("Caça nao encontrada"))
     } 
-  res.send(hunt)
+  res.send(hunt[0])
   } catch(e){
     console.error(e)
     res.status(404).send("Nao foi possivel achar a caça")

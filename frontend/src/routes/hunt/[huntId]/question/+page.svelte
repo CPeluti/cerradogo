@@ -6,7 +6,7 @@
 
 
 <div id="question">
-    <Question question={data} />
+    <Question question={data.questions} hunt={data.hunt}/>
 </div>
 
 <style>

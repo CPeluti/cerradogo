@@ -31,6 +31,7 @@
         justify-content: center;
     }
     h1{
+        font-family: 'Roboto';
         margin: 0;
         padding: 0;
         font-size: 24px;
@@ -40,6 +41,7 @@
         margin: 0;
         padding: 0;
         font-size: 12px;
+        font-family: 'Roboto';
         color: #A8A8A8;
         text-transform: uppercase;
     }

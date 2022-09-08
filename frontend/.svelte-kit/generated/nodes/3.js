@@ -1,3 +1,3 @@
-import * as shared from "../../../src/routes/hunt/[huntId]/+page.ts";
+import * as shared from "..\\..\\..\\src\\routes\\hunt\\[huntId]\\+page.ts";
 export { shared };
-export { default as component } from "../../../src/routes/hunt/[huntId]/+page.svelte";
+export { default as component } from "..\\..\\..\\src\\routes\\hunt\\[huntId]\\+page.svelte";

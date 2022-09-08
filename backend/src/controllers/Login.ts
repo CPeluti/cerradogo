@@ -5,7 +5,6 @@ dotenv.config()
 const age: number = process.env.EXPIRESIN ? parseInt(process.env.EXPIRESIN) : 15000
 const key = "teste"
 const create = async (req: Request, res: Response) => {
-  console.log(req.body)
   const {username, password} = req.body
     try{
         const token = await authentication.auth({username, password}, key)
