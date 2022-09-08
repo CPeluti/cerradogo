@@ -23,7 +23,7 @@ const userSchema = new Schema<User>({
     experience: {type: Number, required: true},
     rank: {type: Number, required: true},
     leaguePoints: {type: Number, required: true},
-    hunts: {type: [{huntId: String, progress: Number}], required: false}
+    hunts: {type: [{huntId: String, progress: Number}], required: true}
 })
 
 const UserModel = model<User>('User', userSchema)
