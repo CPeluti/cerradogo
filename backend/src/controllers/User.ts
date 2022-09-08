@@ -1,8 +1,13 @@
 import {Request, Response} from 'express'
 import UserModel, {User} from '../models/User'
 import { HydratedDocument } from 'mongoose'
+
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
+
 export const create = async (req: Request, res: Response) => {
   const user: User = req.body
+  console.log(req.body)
   const userModel: HydratedDocument<User> = new UserModel(user)
   try{
     await userModel.save()
