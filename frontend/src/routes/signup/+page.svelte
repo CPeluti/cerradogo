@@ -1,71 +1,81 @@
 <script lang="ts">
-  import { signUpUser } from "$lib/auth";
-  import { goto } from '$app/navigation';
-  import { NotificationDisplay, notifier } from '@beyonk/svelte-notifications'
+import { signUpUser } from "$lib/auth";
+import { NotificationDisplay, notifier } from '@beyonk/svelte-notifications'
+import { goto } from '$app/navigation';
+
   let email = ""
   let password = ''
   let nickname = ''
   let senhaConfirmar = ''
+  let disabled = true;
+  let name = ''
 
   let signUp = async () => {
-    try {
-      const res = await signUpUser({email, nickname, password})
-      if(res){
-        await goto('/login')
-      }
-    } catch (e) {
-      // @ts-ignore
-      notifier.danger("Falha ao realizar o cadastro")
+        try {
+            await signUpUser({email, name, nickname, password})
+            await goto('/')
+        } catch (e) {
+            // @ts-ignore
+            notifier.danger("Falha ao realizar o cadastro")
+        }
     }
-  }
+
 </script>
   
-<body>
-  <button class="back" on:click={async ()=> {await goto('/login')}}>Voltar</button>
-  <h2 class="center">Criar Conta</h2>
+<div class="tela">
+  <form>
+    <button class="back">Voltar</button>
+    <h2 class="center">Criar Conta</h2>
 
-  <div class="center">
-    <h1>Cerrado Go</h1>
-  </div>
+    <div class="center">
+      <h1>Cerrado Go</h1>
+    </div>
 
-  <div class="field">
-    <input type="email" name="email" class="input" placeholder="Email" bind:value = {email}/>
-  </div>
+    <div class="field">
+      <input name="email" class="input" placeholder="Email" bind:value = {email}/>
+    </div>
 
-  <div class="field">
-    <input type="user-name" name="userName" class="input" placeholder="Usuario" bind:value = {nickname}/>
-  </div>
+    <div class="field">
+      <input name="userName" class="input" placeholder="Usuario" bind:value = {nickname}/>
+    </div>
 
-  <div class="field">
+    <div class="field">
+      <input name="name" class="input" placeholder="Seu Nome" bind:value = {name}/>
+    </div>
 
-    <input
-      bind:value = {password}
-      type='password'
-      class="input"
-      placeholder="Senha"
-    />
-  </div>
+    <div class="field">
 
-  <div class="field">
+      <input
+        bind:value = {password}
+        type='password'
+        class="input"
+        placeholder="Senha"
+      />
+    </div>
 
-    <input
-      bind:value = {senhaConfirmar}
-      type='password'
-      class="input"
-      placeholder="Confirmar Senha"
-    />
-  </div>
+    <div class="field">
 
-  <div class="center">
-    <button on:click={signUp}>Sign Up</button>
-  </div>
+      <input
+        bind:value = {senhaConfirmar}
+        type='password'
+        class="input"
+        placeholder="Confirmar Senha"
+      />
+    </div>
+
+    <div class="center">
+      <button on:click={signUp} disabled={(password!=senhaConfirmar)||(password.length < 2)||(!email.includes("@"))||(nickname.length < 4)}>Cadastrar</button>
+    </div>
     
-</body>
+  </form>
+
+</div>
 
 <style>
-  button{
-    cursor: pointer;
+  form {
+    --text-color: #afafaf;
   }
+  
   .field {
     width: 20rem;
     margin-left: auto;
@@ -74,6 +84,14 @@
     position: relative;
     border-bottom: 2px dashed var(--text-color);
     transition: 500ms;
+  }
+
+  .tela {
+    width: 20rem;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 3rem;
+    position: relative;
   }
   
   .input {
