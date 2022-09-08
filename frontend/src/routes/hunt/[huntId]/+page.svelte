@@ -7,6 +7,18 @@
         location: "string",
         latlong: data.hunt.latlong
     }
-    const progress = 7/9*100
+    import {userStore} from '../../../stores/store'
+    let progress = 0
+    if(browser){
+        let userValue: User
+        userStore.subscribe(value=>{
+            userValue = value
+        })
+        const aux = userValue.hunts?.find(el => data.id === el.huntId)
+        progress = aux? aux.progress : progress
+    }
+    import type { User } from "../../../interfaces/User";
+import { browser } from "$app/env";
+    
 </script>
-<HuntMap hunt={data.hunt} id={data.id}/>
+<HuntMap hunt={data.hunt} id={data.id} progress={progress}/>

@@ -4,8 +4,8 @@
     import ProgressBar from "../components/ProgressBar.svelte";
     export let hunt;
     export let id;
+    export let progress: number;
     const imgUrl = new URL('../images/google_maps.jpg', import.meta.url).href
-    const progress = 7/9*100;
     function shuffle(a: string[]) {
         for (let i = a.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
@@ -15,7 +15,7 @@
     }
 
     let dicas = ()=>{
-        if(hunt.tips.length){
+        if(hunt.tips?.length){
             let tips = shuffle(hunt.tips)
             notifier.info(tips[0])
         } else {
@@ -29,9 +29,9 @@
         <div id="nome_caca">
             {hunt.name}
         </div>
-        <ProgressBar progress={progress}/>
+        <ProgressBar progress={progress} color="#3FE106"/>
         <div id="pct">
-            7/9
+            {progress*hunt.totalQuestions}/{hunt.totalQuestions}
         </div>
         <img id="mapa" src={imgUrl} alt="mapa">
         <div>
@@ -68,6 +68,7 @@
         border-radius: 100%;
         border-width: 0;
         font-size: 14px;
+        font-family: 'Roboto';
         background-color: #1A73E9;
         color: white;
     }

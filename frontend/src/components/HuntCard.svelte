@@ -1,22 +1,25 @@
 <script lang="ts">
+    import { goto } from '$app/navigation'
     import ProgressBar from "./ProgressBar.svelte";
     export let hunt;
+    export let progress: number;
     const image = `data:${hunt.img.fileType};base64,${hunt.img.file}`
-    
+    let intoHunt = async () => {
+        await goto(`/hunt/${hunt["_id"]}`)
+    }
 </script>
 
 <main>
-    <div class="hunt-container" on:click={()=>{window.location.replace(`/hunt/${hunt["_id"]}`)}}>
+    <div class="hunt-container" on:click={async ()=>{await intoHunt()}}>
         <img class="img" src={image} alt="Foto"/>
         <div class="container">
             <div class="name">{hunt.name}</div>
             <div>
                 <div class="footer">
-                    <div class="progress-frac">Pistas: 1/9</div>
-                    <div class="deadline">Limite: 30/02/2023</div>
+                    <div class="progress-frac">Pistas: {progress*hunt.totalQuestions}/{hunt.totalQuestions}</div>
                 </div>
             </div>
-            <ProgressBar color="#3FE106" progress={1/4}/>
+            <ProgressBar color="#3FE106" progress={progress}/>
         </div>
     </div>
 </main>
@@ -30,6 +33,7 @@
     .footer{
         display: flex;
         font-size: 10px;
+        font-family: 'Roboto';
         justify-content: space-between;
     }
     .container{
@@ -43,7 +47,7 @@
         left: 10px;
         font-style: normal;
         font-weight: 500;
-        font-size: 14px;
+        font-size: 12px;
         line-height: 16px;
         text-transform: uppercase;
         color: #929292;
@@ -60,7 +64,7 @@
     .name{
         font-family: 'Roboto';
         font-style: normal;
-        font-weight: 500;
+        font-weight: 700;
         font-size: 14px;
         line-height: 16px;
         text-transform: uppercase;

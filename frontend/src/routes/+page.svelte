@@ -10,6 +10,14 @@
     userStore.subscribe(value=>{
         userValue = value
     })
+    let huntProgress = (hunt): number => {
+        hunt = userValue.hunts.find(el => el.huntId === hunt['_id'])
+        if(hunt){
+            return hunt.progress
+        } else {
+            return 0
+        }
+    }
 </script>
 
 <div class="container">
@@ -21,7 +29,7 @@
             {#await promise then data}
             {#each data as hunt}
             <div style="margin-bottom: 20px;">
-                <HuntCard hunt={hunt}/>
+                <HuntCard hunt={hunt} progress={huntProgress(hunt)}/>
             </div>
             {/each}
             
