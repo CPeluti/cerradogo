@@ -1,19 +1,18 @@
 <script lang="ts">
 import { signUpUser } from "$lib/auth";
-import { NotificationDisplay, notifier } from '@beyonk/svelte-notifications'
+import { notifier } from '@beyonk/svelte-notifications'
 import { goto } from '$app/navigation';
 
   let email = ""
   let password = ''
   let nickname = ''
   let senhaConfirmar = ''
-  let disabled = true;
   let name = ''
 
   let signUp = async () => {
         try {
             await signUpUser({email, name, nickname, password})
-            await goto('/')
+            await goto('/login')
         } catch (e) {
             // @ts-ignore
             notifier.danger("Falha ao realizar o cadastro")
@@ -23,8 +22,8 @@ import { goto } from '$app/navigation';
 </script>
   
 <div class="tela">
-  <form>
-    <button class="back">Voltar</button>
+  <div>
+    <button class="back" on:click={async ()=>{await goto('/login')}}>Voltar</button>
     <h2 class="center">Criar Conta</h2>
 
     <div class="center">
@@ -64,14 +63,17 @@ import { goto } from '$app/navigation';
     </div>
 
     <div class="center">
-      <button on:click={signUp} disabled={(password!=senhaConfirmar)||(password.length < 2)||(!email.includes("@"))||(nickname.length < 4)}>Cadastrar</button>
+      <button on:click={signUp}>Cadastrar</button>
     </div>
     
-  </form>
+  </div>
 
 </div>
 
 <style>
+  button {
+    cursor: pointer;
+  }
   form {
     --text-color: #afafaf;
   }
