@@ -1,13 +1,16 @@
 <script lang="ts">
-
+    import { goto, afterNavigate } from '$app/navigation';
     import type QuestionInterface from "interfaces/Question";
     import AnswerBtn from "./AnswerBtn.svelte"
-
     export let question: QuestionInterface
-    const image = `data:${question.img.file};base64,${question.img.fileType}`
+    let previousPage : string | undefined;
+    afterNavigate((navigation):void => {
+        previousPage = navigation.from?.pathname
+    })
+    const image = `data:${question.img.fileType};base64,${question.img.file}`
     const quest = question.question
     let answers = shuffle(question.answers)
-
+    let disabled = false
     function shuffle(a: {text:string, right: boolean, selected: string}[]) {
         for (let i = a.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
@@ -18,25 +21,27 @@
 
    
     function showAnswer(option: {text:string, right: boolean, selected: string}){
-        console.log("TESTE")
-        for (let a of answers){
-            
-            if(option === a || a.right === true) {
-                a.selected = 'true'
+        if(!disabled){
+            disabled = true
+            for (let a of answers){
+                
+                if(option === a || a.right === true) {
+                    a.selected = 'true'
+                }
+                else {
+                    a.selected = 'false'
+                }
+                
+            }
+    
+            if(option.right === true) {
+                select = 'true'
             }
             else {
-                a.selected = 'false'
+                select = 'false'
             }
-            
+            answers = [...answers]
         }
-
-        if(option.right === true) {
-            select = 'true'
-        }
-        else {
-            select = 'false'
-        }
-        answers = [...answers]
     }
 
     let select = ''
@@ -72,6 +77,9 @@
                     on:clickAnswer={() => showAnswer(a)} />
             
         {/each} 
+        {#if disabled}
+            <button on:click={async ()=>{await goto(previousPage)}}> Voltar </button>
+        {/if}
     
         
     </div>
@@ -81,6 +89,23 @@
 
 
 <style>
+    button {
+        margin-top: 100px;
+        padding: 0.5rem;
+        width: 400px;
+        height: 40px;
+        border: none;
+        border-radius: 50px;
+        background-image: linear-gradient(to right, #6C92F4 , #1A73E9);
+        cursor: pointer;
+        display: block;
+        color: white;
+        text-align: center;
+        line-height: 20px;
+        text-transform: uppercase;
+        font-weight: bold;
+    }
+
     div {
         display: flex;
         flex-wrap: wrap;
@@ -115,6 +140,7 @@
 
     #options {
         display: flex;
+        flex-direction: column;
         margin-left: auto;
         margin-right: auto;
         
