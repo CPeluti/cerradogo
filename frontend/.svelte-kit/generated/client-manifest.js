@@ -8,14 +8,14 @@ export const nodes = [
 	() => import('./nodes/4'),
 	() => import('./nodes/5'),
 	() => import('./nodes/6'),
-	() => import('./nodes/7')
+	() => import('./nodes/7'),
+	() => import('./nodes/8')
 ];
 
 export const dictionary = {
-	"": [[1], [0], 2],
-	"hunt": [[1], [0], 3],
-	"login": [[1], [0], 5],
-	"perfil": [[1], [0], 6],
-	"question": [[1], [0], 7],
-	"hunt/[huntId]/question": [[1], [0], 4]
+	"": [2],
+	"login": [3],
+	"perfil": [4],
+	"question": [5],
+	"signup": [6]
 };
