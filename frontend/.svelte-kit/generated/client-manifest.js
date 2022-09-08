@@ -14,10 +14,10 @@ export const nodes = [
 
 export const dictionary = {
 	"": [[1], [0], 2],
-	"hunt": [[1], [0], 3],
 	"login": [[1], [0], 5],
 	"perfil": [[1], [0], 6],
 	"question": [[1], [0], 7],
 	"signup": [[1], [0], 8],
+	"hunt/[huntId]": [[1], [0], 3],
 	"hunt/[huntId]/question": [[1], [0], 4]
 };

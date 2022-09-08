@@ -1,6 +1,6 @@
 <script lang="ts">
 import { signUpUser } from "$lib/auth";
-import { notifier } from '@beyonk/svelte-notifications'
+import { NotificationDisplay, notifier } from '@beyonk/svelte-notifications'
 import { goto } from '$app/navigation';
 
   let email = ""
@@ -20,7 +20,7 @@ import { goto } from '$app/navigation';
     }
 
 </script>
-  
+<NotificationDisplay />
 <div class="tela">
   <div>
     <button class="back" on:click={async ()=>{await goto('/login')}}>Voltar</button>
