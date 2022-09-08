@@ -74,7 +74,6 @@ export const readQuestion = async (req: Request, res: Response) => {
 export const randomQuestion = async (req: Request, res: Response) => {
   try {
     const hunt = await HuntModel.findById(req.params.huntId).select('questions -_id')
-    console.log(hunt)
     const id =  hunt?.questions[Math.floor(Math.random() * hunt.questions.length)]
     const question = await QuestionModel.findById(id)
     res.send(question)

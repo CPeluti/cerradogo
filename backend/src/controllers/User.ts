@@ -1,5 +1,6 @@
 import {Request, Response} from 'express'
 import UserModel, {User} from '../models/User'
+import HuntModel from '../models/Hunt'
 import { HydratedDocument } from 'mongoose'
 export const create = async (req: Request, res: Response) => {
   const user: User = req.body
@@ -71,3 +72,32 @@ export const deleteById = async (req: Request, res: Response) => {
     res.send("Falha ao deletar o ID")
   }
 } 
+
+export const point = async (req: Request, res: Response) => {
+  const {id, player} = req.body
+  try {
+    const user: User | null = await UserModel.findById(player) 
+    const hunt = await HuntModel.findById(id)
+    let userHunts = user?.hunts
+    if(userHunts.length){
+      if(userHunts.find(el => el.huntId === id)){
+        userHunts = userHunts?.map(el=>{
+          if(el.huntId===id){
+            if(el.progress < 1){
+              el.progress += 1/hunt?.questions.length
+            }
+          }
+          return el
+        })
+        const result = await UserModel.findByIdAndUpdate(player, {hunts: userHunts}, {new: true})
+        res.send(result)
+        return
+      }
+    } else {
+      userHunts = [{huntId: id, progress: 1/hunt.questions.length}]
+      const result = await UserModel.findByIdAndUpdate(player, {hunts: userHunts}, {new: true})
+      res.send(result)
+    }
+
+  } catch {}
+}
