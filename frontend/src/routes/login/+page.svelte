@@ -21,7 +21,7 @@
 
 <NotificationDisplay />
 <div class="page">
-    <img src="/images/Group_3.png" alt="img">
+    <img src="/images/Group_3.png" alt="group">
     <div class="container">
         <input class="input" bind:value={username} placeholder="E-Mail"/>
         <input class="input" type="password" bind:value={password} placeholder="Password"/>

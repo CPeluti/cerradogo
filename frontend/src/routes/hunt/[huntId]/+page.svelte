@@ -18,7 +18,7 @@
         progress = aux? aux.progress : progress
     }
     import type { User } from "../../../interfaces/User";
-import { browser } from "$app/env";
+import { browser } from "$app/environment";
     
 </script>
 <HuntMap hunt={data.hunt} id={data.id} progress={progress}/>
