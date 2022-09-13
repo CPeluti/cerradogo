@@ -4,6 +4,6 @@ import Validate from '../controllers/Auth'
 import Auth from '../middlewares/auth'
 const router: Router = express.Router()
 router.post('/', Login)
-router.post('/validate', Auth, Validate)
+router.post('/validate', Validate)
 
 export default router
