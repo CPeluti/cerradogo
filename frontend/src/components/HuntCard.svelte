@@ -71,14 +71,4 @@
         color: #000000;
         text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     }
-    .deadline{
-        font-family: 'Roboto';
-        font-style: normal;
-        font-weight: 500;
-        font-size: 14px;
-        line-height: 16px;
-        text-transform: uppercase;
-        color: #929292;
-    }
-
 </style>

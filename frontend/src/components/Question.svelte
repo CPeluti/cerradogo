@@ -75,7 +75,7 @@
             
         </h2>
     </div>
-    <img src={image} alt="">
+    <img src={image} alt="question">
     
     
     <div id="options">

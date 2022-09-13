@@ -78,6 +78,8 @@ export const point = async (req: Request, res: Response) => {
   try {
     const user: User | null = await UserModel.findById(player) 
     const hunt = await HuntModel.findById(id)
+    console.log(user)
+    console.log(hunt)
     let userHunts = user?.hunts
     if(userHunts.length){
       if(userHunts.find(el => el.huntId === id)){
@@ -89,6 +91,11 @@ export const point = async (req: Request, res: Response) => {
           }
           return el
         })
+        const result = await UserModel.findByIdAndUpdate(player, {hunts: userHunts}, {new: true})
+        res.send(result)
+        return
+      } else {
+        userHunts = [...userHunts, {huntId: id, progress: 1/hunt.questions.length}]
         const result = await UserModel.findByIdAndUpdate(player, {hunts: userHunts}, {new: true})
         res.send(result)
         return

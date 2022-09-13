@@ -5,7 +5,6 @@
     export let hunt;
     export let id;
     export let progress: number;
-    const imgUrl = new URL('../images/google_maps.jpg', import.meta.url).href
     function shuffle(a: string[]) {
         for (let i = a.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
@@ -33,7 +32,7 @@
         <div id="pct">
             {progress*hunt.totalQuestions}/{hunt.totalQuestions}
         </div>
-        <img id="mapa" src={imgUrl} alt="mapa">
+        <img id="mapa" src="/images/google_maps.jpg" alt="mapa">
         <div>
             <button id="perfil" class="secondary" disabled>perfil</button>
             <button id="dica" on:click={dicas} class="secondary">dica</button>

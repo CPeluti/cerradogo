@@ -3,13 +3,7 @@
 // and what to do when importing types
 declare namespace App {
 	// interface Locals {}
+	// interface PageData {}
+	// interface PageError {}
 	// interface Platform {}
-	// interface PrivateEnv {}
-	// interface PublicEnv {}
-	// interface Session {}
-	// interface Stuff {}
-}
-
-declare module '@fortawesome/free-solid-svg-icons/index.es' {
-	export {faFlag} from '@fortawesome/free-solid-svg-icons';
 }
