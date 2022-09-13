@@ -78,15 +78,18 @@ export const point = async (req: Request, res: Response) => {
   try {
     const user: User | null = await UserModel.findById(player) 
     const hunt = await HuntModel.findById(id)
-    console.log(user)
-    console.log(hunt)
     let userHunts = user?.hunts
-    if(userHunts.length){
+    let userHuntsArray
+    let huntsLength = 0
+    if (hunt?.questions){
+      huntsLength = hunt.questions.length
+    }
+    if(userHunts?.length){
       if(userHunts.find(el => el.huntId === id)){
-        userHunts = userHunts?.map(el=>{
+        userHuntsArray = userHunts?.map(el=>{
           if(el.huntId===id){
             if(el.progress < 1){
-              el.progress += 1/hunt?.questions.length
+              el.progress += 1/huntsLength
             }
           }
           return el
@@ -95,13 +98,13 @@ export const point = async (req: Request, res: Response) => {
         res.send(result)
         return
       } else {
-        userHunts = [...userHunts, {huntId: id, progress: 1/hunt.questions.length}]
-        const result = await UserModel.findByIdAndUpdate(player, {hunts: userHunts}, {new: true})
+        const newUserHunts = [...userHunts, {huntId: id, progress: 1/huntsLength}]
+        const result = await UserModel.findByIdAndUpdate(player, {hunts: newUserHunts}, {new: true})
         res.send(result)
         return
       }
     } else {
-      userHunts = [{huntId: id, progress: 1/hunt.questions.length}]
+      userHunts = [{huntId: id, progress: 1/huntsLength}]
       const result = await UserModel.findByIdAndUpdate(player, {hunts: userHunts}, {new: true})
       res.send(result)
     }

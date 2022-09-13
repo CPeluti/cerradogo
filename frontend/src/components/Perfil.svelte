@@ -7,7 +7,7 @@
 <div class="container">
     <div class="icon">
         {#if user.img}
-            <img id="img_temp" alt="profile image" src={img}/>
+            <img id="img_temp" alt="profile" src={img}/>
         {:else}
             <div id="img_temp"></div>
         {/if}

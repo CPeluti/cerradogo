@@ -74,7 +74,12 @@ export const readQuestion = async (req: Request, res: Response) => {
 export const randomQuestion = async (req: Request, res: Response) => {
   try {
     const hunt = await HuntModel.findById(req.params.huntId).select('questions -_id')
-    const id =  hunt?.questions[Math.floor(Math.random() * hunt.questions.length)]
+    let huntId =  hunt?.questions
+    let id: string
+    if(!huntId){
+      throw new Error()
+    } 
+    id = huntId[Math.floor(Math.random() * huntId.length)]
     const question = await QuestionModel.findById(id)
     res.send(question)
   } catch {

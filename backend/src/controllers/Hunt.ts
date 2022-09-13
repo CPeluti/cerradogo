@@ -56,7 +56,7 @@ export const readHunt = async (req: Request, res: Response) => {
   const id = req.params.id
   try{
     const hunt = await HuntModel.aggregate([
-      { "$match": { "_id":  ObjectId(id) }},
+      { "$match": { "_id":  new ObjectId(id) }},
       {$addFields: { totalQuestions: {$size:'$questions' }}},
       { $unset: "questions" }
     ])
