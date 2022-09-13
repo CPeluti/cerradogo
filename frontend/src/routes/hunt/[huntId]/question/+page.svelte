@@ -1,6 +1,5 @@
 <script lang="ts">
-    /** @type {import('./$types').PageData} */
-    export let data;
+    export let data: Question;
     import Question from "../../../../components/Question.svelte"
 </script>
 

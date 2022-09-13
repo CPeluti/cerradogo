@@ -3,10 +3,10 @@
 </script>
 
 <ul>
-    <AnswerBtn answer="esta é a correta!" />
-    <AnswerBtn answer="esta é errada!" />
-    <AnswerBtn answer="esta é errada!" />
-    <AnswerBtn answer="esta é errada!" />
+    <AnswerBtn icon='' answer="esta é a correta!" />
+    <AnswerBtn icon='' answer="esta é errada!" />
+    <AnswerBtn icon='' answer="esta é errada!" />
+    <AnswerBtn icon='' answer="esta é errada!" />
 </ul>
 
 <style>

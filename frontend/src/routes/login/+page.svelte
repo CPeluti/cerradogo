@@ -3,13 +3,15 @@
     import { userStore } from '../../stores/store'
     import { NotificationDisplay, notifier } from '@beyonk/svelte-notifications'
     import {createSessionCookie} from '$lib/auth'
+    import type { User } from 'src/interfaces/User';
 
     let username = ''
     let password = ''
     
     let login = async () => {
         try {
-            const {user} = await createSessionCookie({username, password})
+            let user
+            user = await createSessionCookie({username, password})
             userStore.set({...user})
             await goto('/')
         } catch (e) {

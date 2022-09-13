@@ -4,14 +4,16 @@
     import {userStore} from '../stores/store'
     import HuntCard from "../components/HuntCard.svelte";
     import Perfil from "../components/Perfil.svelte";
+    import type { Hunt } from 'src/interfaces/Hunt';
     const promise = fetch("http://localhost:3030/hunt", {method: "GET"}).then(res => res.json())
     
-    let userValue: User
+    let userValue: User | any
     userStore.subscribe(value=>{
         userValue = value
     })
-    let huntProgress = (hunt): number => {
-        hunt = userValue.hunts.find(el => el.huntId === hunt['_id'])
+    let huntProgress = (hunt: any): number => {
+        const hunts = userValue['hunts']
+        hunt = hunts.find((el: {progress: number, huntId: string}) => el.huntId === hunt['_id'])
         if(hunt){
             return hunt.progress
         } else {

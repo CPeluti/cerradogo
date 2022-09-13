@@ -1,11 +1,13 @@
 <script lang="ts">
     import { goto } from '$app/navigation'
+    import type { Hunt } from 'src/interfaces/Hunt';
     import ProgressBar from "./ProgressBar.svelte";
-    export let hunt;
+    export let hunt: Hunt;
+    console.log(hunt)
     export let progress: number;
-    const image = `data:${hunt.img.fileType};base64,${hunt.img.file}`
+    const image = `data:${hunt.img?.fileType};base64,${hunt.img?.file}`
     let intoHunt = async () => {
-        await goto(`/hunt/${hunt["_id"]}`)
+        await goto(`/hunt/${(hunt as Hunt)["_id"]}`)
     }
 </script>
 

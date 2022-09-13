@@ -1,9 +1,10 @@
 <script lang="ts">
     import { goto } from '$app/navigation'
     import { NotificationDisplay, notifier } from '@beyonk/svelte-notifications'
+    import type { Hunt } from 'src/interfaces/Hunt';
     import ProgressBar from "../components/ProgressBar.svelte";
-    export let hunt;
-    export let id;
+    export let hunt: Hunt;
+    export let id: string;
     export let progress: number;
     function shuffle(a: string[]) {
         for (let i = a.length - 1; i > 0; i--) {
@@ -16,9 +17,9 @@
     let dicas = ()=>{
         if(hunt.tips?.length){
             let tips = shuffle(hunt.tips)
-            notifier.info(tips[0])
+            notifier.info(tips[0], 30)
         } else {
-            notifier.info('Não há dicas disponíveis atualmente.')
+            notifier.info('Não há dicas disponíveis atualmente.', 30)
         }
     }
 </script>

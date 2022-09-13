@@ -1,15 +1,10 @@
-import { error } from "@sveltejs/kit";
-import {userStore} from '../stores/store'
-import { goto } from '$app/navigation'
-let userValue
-userStore.subscribe(value=>{
-    userValue = value
-})
-export async function load({ params }) {
-    if(!userValue){
-        await goto('/login')
+import { redirect } from "@sveltejs/kit";
+export async function load({ parent }: {parent: any}) {
+    const {user} = await parent()
+    console.log(user)
+    if(!user){
+        throw redirect(307, '/login');
     }
     return {}
     
-    throw error(404, 'Not found');
 }

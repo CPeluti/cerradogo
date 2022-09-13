@@ -1,17 +1,16 @@
-import { error } from "@sveltejs/kit";
 import { request } from "$lib/request";
-import {userStore} from '/src/stores/store'
-import { goto } from '$app/navigation'
-let userValue
+import {userStore} from '../../../stores/store'
+import type { User } from "src/interfaces/User";
+import { redirect } from "@sveltejs/kit";
+let userValue: User | any
 userStore.subscribe(value=>{
     userValue = value
 })
-export async function load({ params }) {
+export async function load({ params }: {params: any}) {
     if(!userValue){
-        await goto('/login')
-        return
+        throw redirect(307, '/login');
     }
-    if (userValue && params.huntId) {
+    if (params.huntId) {
         let res = await request(`http://localhost:3030/hunt/${params.huntId}`, 'GET')
         res = await res.json()
         return {
@@ -19,6 +18,4 @@ export async function load({ params }) {
             hunt: {...res},
         };
     }
-    
-    throw error(404, 'Not found');
 }

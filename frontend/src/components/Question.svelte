@@ -1,21 +1,24 @@
 <script lang="ts">
+    import {userStore} from '../stores/store'
+    import type { User } from 'src/interfaces/User';
+    import type { Hunt } from 'src/interfaces/Hunt';
     import { goto, afterNavigate } from '$app/navigation';
-    import type QuestionInterface from "interfaces/Question";
+    import type {Question} from "src/interfaces/Question";
     import {request} from '$lib/request'
     import AnswerBtn from "./AnswerBtn.svelte"
-    export let question: QuestionInterface
-    export let hunt
-
-    import {userStore} from '../stores/store'
     
-    let userValue
+    export let question: Question
+    export let hunt: Hunt
+
+    
+    let userValue: User | any
     userStore.subscribe(value=>{
         userValue = value
     })
-
-    let previousPage : string | undefined;
+    let previousPage : string = '/'
     afterNavigate((navigation):void => {
-        previousPage = navigation.from?.pathname
+        console.log(navigation)
+        previousPage = navigation.from?.url.pathname || '/'
     })
     const image = `data:${question.img.fileType};base64,${question.img.file}`
     const quest = question.question
@@ -46,7 +49,7 @@
     
             if(option.right === true) {
                 select = 'true'
-                let res = await request(`http://localhost:3030/user/point`, "POST", {id: hunt.id, player: userValue['_id']})
+                let res = await request(`http://localhost:3030/user/point`, "POST", {id: hunt.id, player: (userValue as User)['_id']})
                 res = await res.json()
                 userStore.set({...res})
             }
