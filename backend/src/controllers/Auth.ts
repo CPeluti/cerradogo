@@ -1,10 +1,11 @@
 import {Request, Response} from 'express'
 import UserModel from '../models/User'
 const create = async (req: Request, res: Response) => {
-  const {token} = req.body
-  if(token){
-    const user = await UserModel.find({token})
-    if(user && user.length){
+  const {cookie} = req.body
+  if(cookie){
+    const user = await UserModel.findOne({cookie: cookie})
+    console.log(user)
+    if(user){
       res.status(200).send(user)
       return
     }

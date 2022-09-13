@@ -14,7 +14,9 @@ const create = async (req: Request, res: Response) => {
           httpOnly: true,
           maxAge: age,
         })
-        UserModel.findOneAndUpdate({username}, req.body, {new: true})
+        console.log(token)
+        const user: any = token.user
+        const updated = await UserModel.findByIdAndUpdate(user['_id'], {token: token.token}, {new: true})
         res.status(200).send({user: token.user})
   } catch(e){
     console.error(e)

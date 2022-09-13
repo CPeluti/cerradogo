@@ -27,8 +27,11 @@ export async function createSessionCookie(user: {username: string, password: str
 export async function signUpUser(user: {name: string, email: string, nickname: string, password: string}): Promise<Boolean>{
     try {
         let res = await request('http://localhost:3030/user', 'POST', {nickname: user.nickname, email: user.email, password: user.password, name: user.name, avatar: '', experience: 0, rank: 0, leaguePoints: 0, hunts: []})
+        if(res.status === 400){
+            throw new Error("Email ja cadastrado")
+        }
         return true
     } catch(e) {
-        throw new Error("Não foi possivel cadastrar o usuário")
+        throw new Error(e.message)
     }
 }

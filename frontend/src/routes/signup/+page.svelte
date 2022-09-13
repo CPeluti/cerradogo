@@ -11,11 +11,11 @@ import { goto } from '$app/navigation';
 
   let signUp = async () => {
         try {
-            await signUpUser({email, name, nickname, password})
+            const res = await signUpUser({email, name, nickname, password})
             await goto('/login')
         } catch (e) {
             // @ts-ignore
-            notifier.danger("Falha ao realizar o cadastro")
+            notifier.danger(e)
         }
     }
 
@@ -31,21 +31,21 @@ import { goto } from '$app/navigation';
     </div>
 
     <div class="field">
-      <input name="email" class="input" placeholder="Email" bind:value = {email}/>
+      <input name="email" class="input" placeholder="Email" bind:value={email}/>
     </div>
 
     <div class="field">
-      <input name="userName" class="input" placeholder="Usuario" bind:value = {nickname}/>
+      <input name="userName" class="input" placeholder="Usuario" bind:value={nickname}/>
     </div>
 
     <div class="field">
-      <input name="name" class="input" placeholder="Seu Nome" bind:value = {name}/>
+      <input name="name" class="input" placeholder="Seu Nome" bind:value={name}/>
     </div>
 
     <div class="field">
 
       <input
-        bind:value = {password}
+        bind:value={password}
         type='password'
         class="input"
         placeholder="Senha"
@@ -55,7 +55,7 @@ import { goto } from '$app/navigation';
     <div class="field">
 
       <input
-        bind:value = {senhaConfirmar}
+        bind:value={senhaConfirmar}
         type='password'
         class="input"
         placeholder="Confirmar Senha"
