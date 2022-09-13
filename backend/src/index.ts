@@ -8,6 +8,7 @@ import User from './routes/User'
 import Login from './routes/Login'
 import Hunt from './routes/Hunt'
 import Collection from './routes/Collectionable'
+import Question from './routes/Question'
 
 dotenv.config()
 
@@ -25,6 +26,7 @@ app.use('/user', User)
 app.use('/login', Login)
 app.use('/hunt', Hunt)
 app.use('/collectionable', Collection)
+app.use('/question', Question)
 
 app.listen(port, () => {
     console.log(`server rodando na porta ${port}`)
