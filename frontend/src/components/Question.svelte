@@ -15,7 +15,7 @@
 
     let previousPage : string | undefined;
     afterNavigate((navigation):void => {
-        previousPage = navigation.from?.pathname
+        previousPage = navigation.from?.url.pathname || '/'
     })
     const image = `data:${question.img.fileType};base64,${question.img.file}`
     const quest = question.question
