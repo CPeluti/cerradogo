@@ -2,7 +2,7 @@
 <script lang="ts">
     import HuntCard from "../components/HuntCard.svelte";
     import Perfil from "../components/Perfil.svelte";
-    const promise = fetch("https://cerradogo-server.herokuapp.comhunt", {method: "GET"}).then(res => res.json())
+    const promise = fetch("https://cerradogo-server.herokuapp.com/hunt", {method: "GET"}).then(res => res.json())
     export let data: any;
     let huntProgress = (hunt: any): number => {
         const hunts = data.user ['hunts']

@@ -7,7 +7,7 @@ const auth = async (request2) => {
   } else {
     cookie = "{}";
   }
-  let result = await req("https://cerradogo-server.herokuapp.comlogin/validate", "POST", { cookie });
+  let result = await req("https://cerradogo-server.herokuapp.com/login/validate", "POST", { cookie });
   if (result.status !== 401) {
     result = await result.json();
     return {
