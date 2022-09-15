@@ -5,7 +5,6 @@ import { HydratedDocument } from 'mongoose'
 export const create = async (req: Request, res: Response) => {
   const user: User = req.body
   const userExist = await UserModel.find({email: user.email})
-  console.log(userExist)
   if(userExist.length){
     res.status(400).send('Email ja cadastrado')
     return
