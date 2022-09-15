@@ -53,7 +53,7 @@ const css = {
   map: null
 };
 const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-  const promise = fetch("http://localhost:3030/hunt", { method: "GET" }).then((res) => res.json());
+  const promise = fetch("https://cerradogo-server.herokuapp.comhunt", { method: "GET" }).then((res) => res.json());
   let { data } = $$props;
   let huntProgress = (hunt) => {
     const hunts = data.user["hunts"];

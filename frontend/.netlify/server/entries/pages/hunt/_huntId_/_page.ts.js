@@ -6,7 +6,7 @@ async function load({ params, parent }) {
     throw redirect(307, "/login");
   }
   if (params.huntId) {
-    let res = await request(`http://localhost:3030/hunt/${params.huntId}`, "GET");
+    let res = await request(`https://cerradogo-server.herokuapp.comhunt/${params.huntId}`, "GET");
     res = await res.json();
     return {
       user,
@@ -21,7 +21,7 @@ async function GET({ params, parent }) {
     throw redirect(307, "/login");
   }
   if (params.huntId) {
-    let res = await request(`http://localhost:3030/hunt/${params.huntId}`, "GET");
+    let res = await request(`https://cerradogo-server.herokuapp.comhunt/${params.huntId}`, "GET");
     res = await res.json();
     return {
       user,

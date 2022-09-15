@@ -43,7 +43,7 @@
     
             if(option.right === true) {
                 select = 'true'
-                let res = await request(`http://localhost:3030/user/point`, "POST", {id: hunt.id, player: (user as User)['_id']})
+                let res = await request(`https://cerradogo-server.herokuapp.comuser/point`, "POST", {id: hunt.id, player: (user as User)['_id']})
                 res = await res.json()
             }
             else {
