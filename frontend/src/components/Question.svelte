@@ -1,5 +1,4 @@
 <script lang="ts">
-    import {userStore} from '../stores/store'
     import type { User } from 'src/interfaces/User';
     import type { Hunt } from 'src/interfaces/Hunt';
     import { goto, afterNavigate } from '$app/navigation';
@@ -9,15 +8,10 @@
     
     export let question: Question
     export let hunt: Hunt
-
+    export let user: User
     
-    let userValue: User | any
-    userStore.subscribe(value=>{
-        userValue = value
-    })
     let previousPage : string = '/'
     afterNavigate((navigation):void => {
-        console.log(navigation)
         previousPage = navigation.from?.url.pathname || '/'
     })
     const image = `data:${question.img.fileType};base64,${question.img.file}`
@@ -49,9 +43,8 @@
     
             if(option.right === true) {
                 select = 'true'
-                let res = await request(`http://localhost:3030/user/point`, "POST", {id: hunt.id, player: (userValue as User)['_id']})
+                let res = await request(`http://localhost:3030/user/point`, "POST", {id: hunt.id, player: (user as User)['_id']})
                 res = await res.json()
-                userStore.set({...res})
             }
             else {
                 select = 'false'
@@ -94,7 +87,9 @@
             
         {/each} 
         {#if disabled}
-            <button on:click={async ()=>{await goto(previousPage)}}> Voltar </button>
+            <button on:click={async ()=>{
+                await goto(previousPage)
+            }}> Voltar </button>
         {/if}
     
         

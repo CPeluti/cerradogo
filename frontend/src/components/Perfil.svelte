@@ -2,25 +2,25 @@
     import type { User } from '../interfaces/User'
     import ProgressBar from "./ProgressBar.svelte"
     export let user: User
-    const img = `data:${user.img?.fileType};base64,${user.img?.file}`
+    const img = `data:${user?.img?.fileType};base64,${user?.img?.file}`
 </script>
 <div class="container">
     <div class="icon">
-        {#if user.img}
+        {#if user?.img}
             <img id="img_temp" alt="profile" src={img}/>
         {:else}
             <div id="img_temp"></div>
         {/if}
-        <ProgressBar color="#06FFF0" progress={(user.experience%100)/100}/>
+        <ProgressBar color="#06FFF0" progress={(user?.experience%100)/100}/>
     </div>
     <div class="text">
         <span>
             <h1>
-                {user.nickname}
+                {user?.nickname}
             </h1>
         </span>
         <span>
-            <h2>lvl: {Math.floor(user.experience/100)}</h2>
+            <h2>lvl: {Math.floor(user?.experience/100)}</h2>
         </span>
     </div>
 </div>

@@ -1,9 +1,8 @@
 import { redirect } from "@sveltejs/kit";
 const validate = async (parent: any) => {
     const {user} = await parent()
-    if(!user){
-        console.log('aqui')
-        throw redirect(307, '/login');
+    if(user){
+        throw redirect(302, '/');
     }
     return {user}
 }

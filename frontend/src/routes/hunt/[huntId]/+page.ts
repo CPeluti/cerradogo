@@ -1,19 +1,32 @@
 import { request } from "$lib/request";
-import {userStore} from '../../../stores/store'
-import type { User } from "src/interfaces/User";
 import { redirect } from "@sveltejs/kit";
-let userValue: User | any
-userStore.subscribe(value=>{
-    userValue = value
-})
-export async function load({ params }: {params: any}) {
-    if(!userValue){
+
+export async function load({ params, parent }: {params: any, parent: any}) {
+    const {user} = await parent()
+    if(!user){
         throw redirect(307, '/login');
     }
     if (params.huntId) {
         let res = await request(`http://localhost:3030/hunt/${params.huntId}`, 'GET')
         res = await res.json()
         return {
+            user,
+            id: params.huntId,
+            hunt: {...res},
+        };
+    }
+}
+
+export async function GET({ params, parent }: {params: any, parent: any}) {
+    const {user} = await parent()
+    if(!user){
+        throw redirect(307, '/login');
+    }
+    if (params.huntId) {
+        let res = await request(`http://localhost:3030/hunt/${params.huntId}`, 'GET')
+        res = await res.json()
+        return {
+            user,
             id: params.huntId,
             hunt: {...res},
         };

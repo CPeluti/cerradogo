@@ -18,6 +18,7 @@ export async function createSessionCookie(user: {username: string, password: str
     try {
         let res = await request('http://localhost:3030/login', 'POST', {username: user.username, password: user.password})
         const userRes: User = await res.json()
+        console.log(userRes)
         return userRes
     } catch (e) {
         throw new Error("Credenciais invalidas")

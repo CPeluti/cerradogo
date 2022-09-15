@@ -3,7 +3,6 @@
     import type { Hunt } from 'src/interfaces/Hunt';
     import ProgressBar from "./ProgressBar.svelte";
     export let hunt: Hunt;
-    console.log(hunt)
     export let progress: number;
     const image = `data:${hunt.img?.fileType};base64,${hunt.img?.file}`
     let intoHunt = async () => {

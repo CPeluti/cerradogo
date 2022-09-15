@@ -1,19 +1,15 @@
 <script lang="ts">
-    import { goto } from '$app/navigation'
-    import { userStore } from '../../stores/store'
+    import { goto, invalidateAll } from '$app/navigation'
     import { NotificationDisplay, notifier } from '@beyonk/svelte-notifications'
     import {createSessionCookie} from '$lib/auth'
-    import type { User } from 'src/interfaces/User';
 
     let username = ''
     let password = ''
     
     let login = async () => {
         try {
-            let user
-            user = await createSessionCookie({username, password})
-            userStore.set({...user})
-            await goto('/')
+            await createSessionCookie({username, password})
+            invalidateAll()
         } catch (e) {
             // @ts-ignore
             notifier.danger("Falha ao realizar login")
@@ -28,8 +24,9 @@
         <input class="input" bind:value={username} placeholder="E-Mail"/>
         <input class="input" type="password" bind:value={password} placeholder="Password"/>
     </div>
-    <button class="btn" on:click={login}>entrar</button>
-    <button class="btn" on:click={async ()=>{await goto('/signup')}}>cadastrar</button>
+    <button class="btn" href="/" on:click={login}>entrar</button>
+    <!-- <button class="btn" on:click={async ()=>{await goto('/signup')}}>cadastrar</button> -->
+    <a class="btn" href="/signup">cadastrar</a>
 </div>
 
 <style>
@@ -37,6 +34,15 @@
         cursor: pointer;
     }
     .btn {
+        text-decoration: none;
+        color: black;
+        background-color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-style: solid;
+        border-width: 1px;
+        border-color: black;
         border-radius: 100px;
         font-weight: bold;
         text-transform: uppercase;

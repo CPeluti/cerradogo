@@ -17,7 +17,7 @@
     let dicas = ()=>{
         if(hunt.tips?.length){
             let tips = shuffle(hunt.tips)
-            notifier.info(tips[0], 30)
+            notifier.info(tips[0], 10000)
         } else {
             notifier.info('Não há dicas disponíveis atualmente.', 30)
         }
